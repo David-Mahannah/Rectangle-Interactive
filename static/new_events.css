@@ -1,0 +1,130 @@
+.grid_container_columns {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: red;
+    padding: 10px;
+    height: 700px;
+}
+
+
+#first_space {
+    position: relative;
+    height: 60%;
+    background-color: black;
+}
+
+
+#first_pedestal {
+    height: 40%;
+    background-color: #424242;
+}
+
+#first_space img {
+    position: absolute;
+    width: 70%;
+    left: 45px;
+    bottom: 40px;
+    border: 5px white dashed;
+    border-radius: 16px;
+}
+
+#second_space {
+    position: relative;
+    height: 70%;
+    background-color: black;
+}
+
+#second_pedestal {
+    height: 30%;
+    background-color: #424242;
+}
+
+#second_space img {
+    position: absolute;
+    width: 70%;
+    left: 45px;
+    bottom: 40px;
+    border: 5px white dashed;
+    border-radius: 16px;
+}
+
+#third_space {
+    position: relative;
+    height: 80%;
+    background-color: black;
+}
+
+
+#third_pedestal {
+    height: 20%;
+    background-color: #424242;
+}
+
+#third_space img {
+    position: absolute;
+    width: 70%;
+    left: 45px;
+    bottom: 40px;
+    border: 5px white dashed;
+    border-radius: 16px;
+}
+
+#place1 {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    margin-left: 80px;
+    padding: 12px 48px;
+    background-color: darkgray;
+    border-radius: 16px;
+}
+
+#place2 {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    margin-left: 75px;
+    margin-top: 65px;
+    padding: 12px 48px;
+    background-color: darkgray;
+    border-radius: 16px;
+}
+
+#place3 {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    margin-left: 80px;
+    padding: 12px 48px;
+    background-color: darkgray;
+    border-radius: 16px;
+}
+
+#username1 {
+    position: absolute;
+    left: 90px;
+    top: 60px;
+    font-size: 50px;
+
+    color: white;
+}
+
+#username2 {
+    position: absolute;
+    left: 90px;
+    top: 130px;
+    font-size: 50px;
+
+    color: white;
+}
+
+#username3 {
+    position: absolute;
+    left: 90px;
+    top: 200px;
+    font-size: 50px;
+    color: white;
+}

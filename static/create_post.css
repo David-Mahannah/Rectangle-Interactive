@@ -1,0 +1,56 @@
+.prompt {
+    border-radius: 5px;
+    background-color: #353a38;
+    padding: 20px;
+    border: 1px solid #474f4c;
+    border-radius: 4px;
+    width:376px;
+    height:260px;
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.labels {
+    color: white;
+}
+
+textarea {
+    resize: none;
+    width: 352px;
+    background-color: #1e2120;
+    color: white;
+    padding: 10px;
+}
+
+  
+input[type=submit] {
+    width: 100%;
+    background-color: #ff6511;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .error {
+      color: red;
+      right: 10px;
+      bottom: -5px;
+      position: absolute;
+  }
+
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    font-size: 50px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    display: inline-block;
+    padding: 12px 24px;
+    cursor: pointer;
+}

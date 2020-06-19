@@ -1,0 +1,38 @@
+{% extends "base.html"%}
+
+{% block head %}
+<title> Create Post </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='create_post.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='create_post_mobile.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div class="prompt">
+        <form action='/editprofile' method='POST' enctype=multipart/form-data>
+            <label for="fname" class="labels">Edit Bio </label>
+            <div class="prompt_text">
+                <br>
+                <textarea type="text" rows = "7" name='bio' id='bio'>{{ user.bio }}</textarea>
+            </div>
+	
+            <br>
+            <label for="file" class="custom-file-upload">
+                 <i class="fa fa-cloud-upload"></i> Upload Photo
+            </label>
+            <input id="file" type="file" name="file"/>
+
+            <select name="select">
+                <option value="" selected disabled hidden>Select Title </option>
+                {% for title in user.titles %}
+                <option value="{{ title.text }}">{{ title.text }}</option>
+                {% endfor %}
+            </select>
+
+            <input type='submit' value='Save'>
+            {% if error %}
+            <p class="error"><strong>{{ error }}</strong></p>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
+

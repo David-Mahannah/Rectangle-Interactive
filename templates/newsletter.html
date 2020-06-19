@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='newsletter.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='newsletter_mobile.css') }}" />
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+{% endblock %}
+
+{% block body %}
+    <div class="top_of_news">
+        <h1 class="title">Newsletter</h1>
+        <a href="/feedback" class="feedback"> Feedback </a>
+    </div>
+    <div class="grid_posts">
+            <div class="post">
+                <div class="top"><p class="post_date"> 4/10/2020 – Newsletter </p></div>
+                <div class="middle">
+                    <p class="post_text">
+                        Welcome to Rectangle Interactive 1.0!
+After a slow start and countless updates Rectangle is finally stable. This new update includes a level system, notifications, photos, events, coins, following and most importantly mobile formatting. I’ve prioritized mobile formatting on this release, so the best way to use this website is now on phone. Moving forward I hope to be more consistent on updates and improve based on user feedback. You can submit feedback and requests above or get direct responses during ‘Feedback Wednesday’ in events. The events of the week are pre-determined but may change in the future: ‘Minion Monday’, ‘Poetry Tuesday’, ‘Feedback Wednesday’, ‘Fun Fact Thursday’, ‘Funny Friday’, ‘None (Sat)’, ‘None(Sun)’ . Each day the posts will refresh at midnight and the event will change. (1st place: 20 coins, 2nd place: 10 coins, 3rd place: 5 coins)
+                    </p>
+                </div>
+            </div>
+            <div class="post">
+                <div class="top"><p class="post_date"> 2/13/2020 – Newsletter </p></div>
+                <div class="middle"><p class="post_text"> Engage in a journey through a site so ugly and yet so beautiful. So simple and so elaborate. So awful yet so . . .  still awful. Welcome to Rectangle Interactive the social media of the future. Is it a good future? Probably not but feel free to make yourself at home in this thriving, chaotic, shit-show. 
+                    This website is run by me alone. I started development in late 2019 and officially released it February 2020. Further progress will be made but there’s only so much a single developer can do while still in high school. Another important note is security. Please do not put personal/valuable information on the site. I have taken measures to protect accounts and passwords but cannot guarantee perfect security. Instead make sure your password is not the same as all other accounts on the web.
+                     </p>
+                </div>
+            </div>
+{% endblock %}

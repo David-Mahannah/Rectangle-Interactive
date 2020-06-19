@@ -1,0 +1,76 @@
+.title_bar {
+    background-color: #353a38;
+    position: relative;
+    padding:15px;
+    border-radius: 8px;
+    display: flex;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+
+.follow_button {
+    position: absolute;
+    background-color: #ff6511;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    right:30px;
+    top: 30px;
+    font-size: 40px;
+    box-shadow: 5px 5px 10px black;
+}
+
+.report_button {
+    position: absolute;
+    background-color: #ff6511;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    right:30px;
+    bottom: 30px;
+    font-size: 40px;
+    box-shadow: 5px 5px 10px black;
+}
+
+.pname {
+    font-size: 60px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.level {
+    font-size: 60px;
+    bottom: 30px;
+}
+
+
+.name_and_level {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 15px;
+    font-size: 50px;
+
+}
+
+
+.pp {
+    width: 150px; 
+    height:150px;
+    border-radius: 8px;
+    margin: 15px;
+    border: 5px solid white;
+}
+

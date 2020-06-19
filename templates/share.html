@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='notifications.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='share_mobile.css') }}" />
+<title> Notifications </title>
+{% endblock %}
+
+{% block body %}
+    <div class="back">
+        <a href="/profile/{{ user.name }}">Back</a>
+    </div>
+    <h1 class="title">Share my profile</h1>
+    <img class="qrcode" src="{{ qrcode('https://www.rectangleinteractive.com/profile/{0}', border=5) }}">
+      
+{% endblock %}

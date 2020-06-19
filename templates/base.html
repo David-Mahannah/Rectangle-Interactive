@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='base_mobile.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block head%} 
+    
+    <title> Rectangle </title>
+    <link rel="apple-touch-icon" href="/static/assets/iphone-icon.png">
+    {% endblock %}
+  </head>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li class="popup" id="hideMe">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <body>
+    <script src="/static/js/base.js"></script>
+      <div class="navbar">
+        <a style="padding-right: 30px; "href='/newsletter'>Rectangle</a>
+          <a href="{{ '/profile/{0}'.format(session['user']) }}"> Profile</a>
+          <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">Social
+              
+              <i class="fa fa-navicon"></i>
+            </button>
+            <div id="dropdown-content" class="dropdown-content">
+              <a href='/feed/0/Top'><i class="fa fa-home"></i> Feed</a>
+              <a href='/events/0/Top/Event/False'><i class="fa fa-trophy"></i> Events</a>
+              <a href="/search/User"> <i class="fa fa-search"></i> Search </a>
+              <a href="/shop/None"> <i class="fa fa-shopping-basket"></i> Shop </a>
+           </div> 
+          </div>
+      </div>
+    <div style="margin-top: 200px; ">{% block body%} {% endblock %}</div>
+</body>
+</div>
+</html>

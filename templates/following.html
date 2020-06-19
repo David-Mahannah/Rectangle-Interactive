@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='following.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='users.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='users_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='following_mobile.css') }}" />
+<title> Create Account </title>
+{% endblock %}
+
+{% block body %}
+<div class="back"><a href="/profile/{{session['user'] }}">back</a> </div>
+    <h1 class="title">Following</h1>
+    {% for user in following %}
+    <div class="title_bar">
+        {% if session["user"] != user[0].name %}
+            {% if cu in user[0].followers %}
+                <a class="follow_button" href="/follow/{{ user[0].name }}"> unfollow</a>
+            {% else %}
+                <a class="follow_button" href="/follow/{{ user[0].name }}"> follow</a>
+            {% endif %}
+            <a class="report_button" href="/report/{{ user[0].name }}">Report</a>
+        {% else %}
+            <a class="following_button"> following </a>
+            <a class="followers_button"> followers </a>
+        {% endif %}  
+        {% if user[1] %}
+        
+        <div class="logo">
+            <a href="/profile/{{user[0].name}}"><img src="/static/uploads/profile_pictures/{{ user[0].name + 'pp' + user[1] }}" class="pp" alt="Rectangle Logo"></a>
+        </div>      
+        {% else %}
+        <div class="logo">
+            <a href="/profile/{{user[0].name}}"><img src="/static/uploads/profile_pictures/defaultpp.png" class="pp" alt="Rectangle Logo"></a>
+        </div>
+        {% endif %}
+        <div class="name_and_level">
+        <a class="pname" href="/profile/{{user[0].name}}"> {{ user[0].name }} </a>
+        <p class="level"> {{ user[0].title }}</p>
+        </div> 
+   </div>
+    
+    {% endfor %}
+{% endblock %}

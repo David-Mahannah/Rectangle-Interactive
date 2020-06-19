@@ -1,0 +1,335 @@
+@media (min-width: 665px) {
+    .grid_posts {
+        padding-left: 10px;
+        padding-right: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 15px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .grid_posts {
+        padding-left: 10px;
+        padding-right: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row-gap: 15px;
+    }
+}
+
+.name_panel {
+    margin-left:15px;
+    margin-right:15px;
+    margin-top: 15px;
+    background-color: #353a38;
+    border-radius: 16px;
+}
+
+.title {
+    margin:10px;
+}
+
+.coin {
+	width: 70px;
+}
+
+.user_since {
+    position: absolute;
+    bottom: 15px;
+    left: 135px;
+    margin: 0px;
+	font-size: 25px;
+}
+
+.follow_button {
+    position: absolute;
+    background-color: #ff6511;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    right:10px;
+    top: 10px;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+
+}
+
+.bio_contents {
+    background-color: #1e2120;
+    padding: 30px;
+    border-radius: 4px;
+    height: 40px;
+    overflow: hidden;
+
+}
+  
+.share_link_me {
+    padding: 6px 10px;
+    background-color: #ff6511;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+
+}
+
+.bio_contents p{
+    margin: 0px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+}
+
+.ftab {
+    background-color: #353a38;
+    padding-left: 30px;
+    border-radius: 8px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.following_button {
+    background-color: #ff6511;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+
+
+}
+
+.followers_button {
+    background-color: #ff6511;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+
+}
+
+.logo {
+    height: 65px;
+    width: 65px;
+    background-color: #1e2120;
+
+}
+
+.contents {
+    background-color: #1e2120;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.contents p {
+    margin: 0px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+}
+
+/* LEVEL INFO */
+
+.level_info_block {
+    padding: 15px;
+    position: relative;
+    background-color: #1e2120;
+    border-radius: 4px;
+height: 70px;
+}
+
+
+.bio_top {
+    padding: 30px;
+padding-bottom: 15px;
+padding-top: 15px;
+}
+
+label {
+    margin-left: 30px;
+}
+
+
+
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+margin-left: 30px;
+margin-right: 30px;
+}
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid white;
+}
+.separator::before {
+    margin-right: 15px;
+widthL 30%;
+}
+
+.separator::after {
+    margin-left: 15px;
+}
+
+
+.level_circle {
+    padding: 0px;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    border-color: white;
+    border: dashed;
+    float: left;
+    text-align: center;
+
+}
+
+
+.mid {
+    padding-right:30px;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    border-radius: 4px;
+}
+
+.progress_bar {
+    margin: 17.5px;
+    width: 80%;
+    position: absolute;
+    bottom: 5px;
+    left: 82px;
+}
+
+.edit_profile {
+   color: white;
+   left: 15px;
+   bottom: 10px;
+   background-color: #FF6511;
+   border-radius: 4px;
+   cursor: pointer;
+   text-decoration: none;
+   veritcal-align: middle;
+   white-space: nowrap;
+   padding: 6px 10px;
+   border: 1px solid #232323;
+   border: 1px solid #232323;
+   box-shadow: 5px 5px 5px #232323;
+
+}
+
+.bar {
+    height:26px; 
+    background-color:purple; 
+    border-radius: 8px
+}
+
+.rank {
+    position: absolute;
+    left: 100px;
+    top: 20px
+}
+
+.level_info {
+    position: absolute;
+    top: 10px;
+}
+
+.title_bar {
+    background-color: #353a38;
+    position: relative;
+    padding:30px;
+    border-radius: 8px;
+    display: flex;
+    text-align: center;
+margin-bottom: 30px;
+}
+
+.logout_button {
+    right: 255px;
+    bottom: 10px;
+    background-color: #ff6511;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space:nowrap;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+}
+
+
+
+.notification_button {
+    position: relative;
+    background-color: #ff6511;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space:nowrap;
+    margin-right: 15px;
+    margin-left: 5px;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+
+}
+
+
+
+
+.notification_button .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 3.5px 8px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+
+
+.pname {
+    margin: 0px;
+    margin-left: 40px;
+margin-top: 10px;
+}
+
+.bot {
+    background-color: #353a38;
+    padding: 30px;
+    padding-top: 0px;
+    border-radius: 8px;
+}
+
+.profile-picture {
+    width: 90px; 
+    height:90px;
+    border-radius: 8px;
+border: 4px solid white;
+}

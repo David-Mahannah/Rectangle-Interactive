@@ -1,0 +1,36 @@
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='login_mobile.css') }}" />
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+{% endblock %}
+
+{% block body %}
+<body>
+      <div class="create_account_box">
+        <form style="margin:0px" action='/createaccount' method='POST'>
+          <label for="fname" class="labels">Email</label>
+          <input type='text' name='email' id='email' placeholder="email">
+          <br>
+          <label for="fname" class="labels">Username</label>
+          <input type='text' name='username' id='username' placeholder="username">
+          <br>
+          <label for="fname" class="labels">Password</label>
+          <input type='password' name='password' id='password' placeholder="8 character password">
+          <br>
+          <label for="fname" class="labels">Re-Enter Password</label>
+          <input type='password' name='password2' id='password2' placeholder="8 character password">
+          <br>
+          <input type='submit' value='Create'>
+        </form>
+        
+          {% if error %}
+          <p class="error" ><strong>{{ error }}</strong></p>
+          {% endif %}
+      </div>
+      <div class = "bottom_buttons_container">
+        <a class="login_button" href='/login'>Login</a>
+        <a class="forgot_account" href='/forgot_password'>Forgot Password?</a>
+      </div>
+</body>
+{% endblock %}

@@ -1,0 +1,315 @@
+{% extends "base.html"%}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='events_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='pagination_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='event_navbar_mobile.css') }}" />
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+{% endblock %}
+
+{% block body %}
+    <div id="snackbar"> Not enough coins.. </div>
+
+    <div class="coin_bar">
+        <div class="coin_circle"><a href="/addcoins"><img src="/static/uploads/resources/coin.png" class="coin"></a></div>
+        <h1>{{user.coins}}</h1>
+        <div class="coin_dropdown"> </div>
+    </div>
+
+    <div class="event_navbar">
+        {% if event_which == "Event" %}    
+        <a id="selected_event_filter" href="/events/{{page}}/{{which}}/Event/False"><img src="/static/assets/events.png" ></a>
+        <a href="/events/{{page}}/{{which}}/Rules/False"><img src="/static/assets/rules.png" ></a>
+        <a href="/events/{{page}}/{{which}}/Standings/False"><img src="/static/assets/leaderboard.png" ></a>
+        {% elif event_which == "Rules" %}
+        <a href="/events/{{page}}/{{which}}/Event/False"><img src="/static/assets/events.png" ></a>
+        <a id="selected_event_filter" href="/events/{{page}}/{{which}}/Rules/False"><img src="/static/assets/rules.png" ></a>
+        <a href="/events/{{page}}/{{which}}/Standings/False"><img src="/static/assets/leaderboard.png" ></a>
+        {% elif event_which == "Standings" %}
+        <a href="/events/{{page}}/{{which}}/Event/False"><img src="/static/assets/events.png" ></a>
+        <a href="/events/{{page}}/{{which}}/Rules/False"><img src="/static/assets/rules.png" ></a>
+        <a id="selected_event_filter" href="/events/{{page}}/{{which}}/Standings/False"><img src="/static/assets/leaderboard.png" ></a>
+        {% endif %}    
+    </div>
+	
+    {% if user.event == 1 %}
+    <div id="myModal" class="modal" onload="makeVisible()">
+        <!-- Modal content -->
+        <div class="modal-content" >
+            <span class="close">&times;</span>
+            <h1 class="modal-title">
+                {{ event_title }}
+            </h1>
+            <br>      
+            <br>
+            <h4 class="modal-text">
+                {{ event_description }}
+            </h4>
+        </div>
+    </div>
+    {% endif %}
+        
+
+        {% if event_which == "Event" %}
+        <div style="margin-bottom: 150px; margin-top: 400px;">
+        <div class="title_and_form_container">    
+            <div class="title">
+                <h1>{{ event_title }}</h1>
+            </div>
+            <a href="/create_event_post" class="post_form"> Make a new post </a>
+        </div>
+        {% if which == "New" %}
+        <ul class="bfilters">
+            <li class="bfilters_item"><a href="/events/0/Top/Event/False">Top Posts</a></li>
+            <li class="bselected_filters_item"><a href="/events/0/New/Event/False">New Posts</a></li>
+            <li class="bfilters_item"><a href="/events/0/Following/Event/False">Following</a></li>
+        </ul>
+        {% elif which == "Top" %}
+        <ul class="bfilters">
+            <li class="bselected_filters_item"><a href="/events/0/Top/Event/False">Top Posts</a></li>
+            <li class="bfilters_item"><a href="/events/0/New/Event/False">New Posts</a></li>
+            <li class="bfilters_item"><a href="/events/0/Following/Event/False">Following</a></li>
+        </ul>
+        {% elif which == "Following" %}
+        <ul class="bfilters">
+            <li class="bfilters_item"><a href="/events/0/Top/Event/False">Top Posts</a></li>
+            <li class="bfilters_item"><a href="/events/0/New/Event/False">New Posts</a></li>
+            <li class="bselected_filters_item"><a href="/events/0/False/Event/False">Following</a></li>
+        </ul>
+        {% endif %}
+
+        {% if not (posts == "none") %}
+            <div class="grid_posts" style="margin-top: 100px;">
+            {% for post in posts %}
+            <div class="new_post_feed">
+                <div class="new_top">
+                    <a class="like_count"> {{ post[0].like_count}} </a>
+                    <a href="{{ '/profile/{0}'.format(post[0].user.name) }}" class="name">{{ post[0].user.name }}</a>
+                    {% if user == post[0].user %}
+                    <a class="delete" href="/event_delete/events/None/None/event_post/{{ post[0].id }}">
+                        <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                    </a>
+                    {% elif user.admin == 1 %}
+                    <a class="delete" href="/event_delete/events/None/None/event_post/{{ post[0].id }}">
+                        <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                    </a>
+                    {% endif %}
+                </div>
+                <div>
+                <div class="new_inner">
+                    {% if post[1] %}
+                    <div class="image_cropper">
+                        <img src="/static/uploads/event_posts/{{ post[0].id|string + post[1] }}" class="photo">
+                    </div>        
+                    {% endif %}
+			 <div class="spacer"></div>
+                    <div class="text">
+                        <p>
+                            {{ post[0].text }}
+                        </p>
+                    </div>
+                    <div class="new_bottom">
+                            <a href="/event_like/events/None/None/event_post/{{ which }}/{{ post[0].id }}" class="like_link">
+                            {% if user in post[0].likes %}
+                                Unlike
+                            {% else %}
+                                Like
+                            {% endif %}
+                        </a>
+			<a href="/event_comments/events/event_post/{{ post[0].id }}/{{which}}" class="comment_link">Comments({{post[0].event_comments|length}})</a>
+                        <a class="date"> {{ post[0].time_created.strftime("%X") }} </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if (not (posts == "none")) and (max != 1)%}
+        <div class="center">
+            <div class="pagination">
+                {% if max < 6 %}
+                    {% if not (page == 0) %}
+                        <a href="/events/{{ page - 1}}/{{which}}/{{event_which}}/False">&laquo;</a>
+                    {% endif %}
+                    {% for i in range(max) %}
+                        {% if i == page %}
+                            <a href="/events/{{i}}/{{which}}/{{event_which}}/False" class="active">{{(i)+1}}</a>
+                        {% else %}
+                            <a href="/events/{{i}}/{{which}}/{{event_which}}/False">{{(i)+1}}</a>
+                        {% endif %}
+                    {% endfor%}
+                    {% if not (page == max - 1) %}
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+                    {% endif %}
+                {% else %} 
+                    {% if page == ( max - 1 ) %}
+                        <!--1-->
+                        <a href="/events/{{ page - 1}}/{{which}}/{{event_which}}/False">&laquo;</a>
+                        <a href="/events/{{ page - 5 }}/{{which}}/{{event_which}}/False"> {{ (page - 5)+1 }}</a>
+                        <a href="/events/{{ page - 4 }}/{{which}}/{{event_which}}/False"> {{ (page - 4)+1 }} </a>
+                        <a href="/events/{{ page - 3}}/{{which}}/{{event_which}}/False"> {{ (page - 3)+1}} </a>
+                        <a href="/events/{{ page - 2 }}/{{which}}/{{event_which}}/False"> {{ (page - 2)+1 }} </a>
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False"> {{ (page - 1)+1 }} </a>
+                        <a href="#" class="active">{{ (page)+1 }}</a>
+
+                    {% elif page == (max - 2) %}
+                        <!--2-->
+                        <a href="/events/{{ page - 1}}/{{which}}/{{event_which}}/False">&laquo;</a>
+                        <a href="/events/{{ page - 4}}/{{which}}/{{event_which}}/False"> {{ (page - 4)+1 }} </a>
+                        <a href="/events/{{ page - 3 }}/{{which}}/{{event_which}}/False">{{ (page - 3)+1 }}</a>
+                        <a href="/events/{{ page - 2 }}/{{which}}/{{event_which}}/False"> {{ (page - 2)+1 }} </a>
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False"> {{ (page - 1)+1 }} </a>
+                        <a href="/events/{{ page }}/{{which}}/{{event_which}}/false" class="active">{{ (page)+1 }}</a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False"> {{ (page + 1)+1 }} </a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+                    
+                    {% elif page == ( max - 3 ) %}
+                        <!--3-->
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False">&laquo;</a>
+                        <a href="/events/{{ page - 3 }}/{{which}}/{{event_which}}/False"> {{ (page - 3)+1 }} </a>
+                        <a href="/events/{{ page - 2 }}/{{which}}/{{event_which}}/False"> {{ (page - 2)+1 }} </a>
+                        <a href="/events/{{ page - 1}}/{{which}}/{{event_which}}/False">  {{ (page - 1)+1 }} </a>
+                        <a href="#" class="active">{{ (page)+1 }}</a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False"> {{ (page + 1)+1 }} </a>
+                        <a href="/events/{{ page + 2 }}/{{which}}/{{event_which}}/False"> {{ (page + 2)+1 }} </a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+
+                    {% elif page == ( max - 4 ) %}
+                        <!--4-->
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False">&laquo;</a>
+                        <a href="/events/{{ page - 2 }}/{{which}}/{{event_which}}/False"> {{ (page - 2)+1 }} </a>
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False"> {{ (page - 1)+1}} </a>
+                        <a href="#" class="active">{{ (page)+1 }}</a>
+                        <a href="/events/{{ page + 1}}}/{{which}}/{{event_which}}/False">  {{ (page + 1)+1 }} </a>
+                        <a href="/events/{{ page + 2 }}/{{which}}/{{event_which}}/False"> {{ (page + 2)+1 }} </a>
+                        <a href="/events/{{ page + 3 }}/{{which}}/{{event_which}}/False"> {{ (page + 3)+1 }} </a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+
+                    {% elif page == 1%}
+                        <!--5-->
+                        <a href="/events/{{ page - 1}}/{{which}}/{{event_which}}/False">&laquo;</a>
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False">{{ (page - 1)+1}}</a>
+                        <a href="#" class="active"> {{ (page)+1 }}</a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False"> {{ (page + 1)+1 }} </a>
+                        <a href="/events/{{ page + 2}}/{{which}}/{{event_which}}/False"> {{ (page + 2)+1 }} </a>
+                        <a href="/events/{{ page + 3 }}/{{which}}/{{event_which}}/False"> {{ (page + 3)+1 }} </a>
+                        <a href="/events/{{ page + 4 }}/{{which}}/{{event_which}}/False"> {{ (page + 4)+1 }} </a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+
+                    {% elif page == 2%}
+                        <!--6-->
+                        <a href="/events/{{ page - 1}}/{{which}}/{{event_which}}/False">&laquo;</a>
+                        <a href="/events/{{ page - 2 }}/{{which}}/{{event_which}}/False">{{ (page - 2)+1 }}</a>
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False"> {{ (page - 1)+1 }} </a>
+                        <a href="#" class="active"> {{ (page)+1 }}</a>
+                        <a href="/events/{{ page + 1}}/{{which}}/{{event_which}}/False"> {{ (page + 1)+1 }} </a>
+                        <a href="/events/{{ page + 2 }}/{{which}}/{{event_which}}/False"> {{ (page + 2)+1 }} </a>
+                        <a href="/events/{{ page + 3 }}/{{which}}/{{event_which}}/False"> {{ (page + 3)+1 }} </a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+
+                    {% elif page == 3 %}
+                        <!--8-->
+                        <a href="/events/{{ page - 1}}/{{which}}/{{event_which}}/False">&laquo;</a>
+                        <a href="/events/{{ page - 3}}/{{which}}/{{event_which}}/False"> {{ (page - 3)+1}} </a>
+                        <a href="/events/{{ page - 2 }}/{{which}}/{{event_which}}/False">{{ (page - 2)+1 }}</a>
+                        <a href="/events/{{ page - 1 }}/{{which}}/{{event_which}}/False"> {{ (page - 1)+1 }} </a>
+                        <a href="/events/{{ page }}/{{which}}/{{event_which}}/False" class="active">{{ (page)+1 }}</a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False"> {{ (page + 1)+1 }} </a>
+                        <a href="/events/{{ page + 2 }}/{{which}}/{{event_which}}/False"> {{ (page + 2)+1 }} </a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+
+                    {% elif page == 0 %}
+                        <!--7-->
+                        <a href="#" class="active"> {{ (page)+1 }}</a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">{{ (page + 1)+1 }}</a>
+                        <a href="/events/{{ page + 2 }}/{{which}}/{{event_which}}/False"> {{ (page + 2)+1 }} </a>
+                        <a href="/events/{{ page + 3}}/{{which}}/{{event_which}}/False"> {{ (page + 3)+1 }} </a>
+                        <a href="/events/{{ page + 4 }}/{{which}}/{{event_which}}/False"> {{ (page + 4)+1 }} </a>
+                        <a href="/events/{{ page + 5 }}/{{which}}/{{event_which}}/False"> {{ (page + 5)+1 }} </a>
+                        <a href="/events/{{ page + 1 }}/{{which}}/{{event_which}}/False">&raquo;</a>
+
+                    {% endif %}
+                {% endif %}
+            </div  >
+        </div>
+        </div>
+        {% endif %}
+    
+    {% elif event_which =="Standings" %}
+    <h1 class="event_title">{{ event_title }}</h1>
+    <div class="grid_container_columns">
+        <div id="column2" class="grid-container_rows">
+            <div id="second_space">
+                {% if ranking_users[1] %}
+                    <span id="username2"> {{ranking_users[1].name}} </span>
+                {% endif %}
+                {% if ranking_users[1] and extensions[1] %}
+                    <img src="/static/uploads/profile_pictures/{{ranking_users[1].name + 'pp' + extensions[1]}}" class="pp" alt="Rectangle Logo">
+                {% else %}
+                    <img src="/static/uploads/profile_pictures/defaultpp.png" class="pp" alt="Rectangle Logo">
+                {% endif %}
+            </div>
+            <div id="second_pedestal">
+                <h1 id="place2">2nd</h1>
+            </div>
+        </div>
+    
+        <div id="column1" class="grid-container_rows">
+            <div id="first_space">
+                {% if ranking_users[0] %}
+                    <span id="username1"> {{ranking_users[0].name}} </span>
+                {% endif %}
+                {% if ranking_users[0] and extensions[0] %}
+                    <img src="/static/uploads/profile_pictures/{{ranking_users[0].name + 'pp' + extensions[0]}}" class="pp" alt="Rectangle Logo">
+                {% else %}
+                    <img src="/static/uploads/profile_pictures/defaultpp.png" class="pp" alt="Rectangle Logo">
+                {% endif %}
+            </div>
+            <div id="first_pedestal">
+                <h1 id="place1">1st</h1>
+            </div>
+        </div>
+    
+        <div id="column3" class="grid-container_rows">
+            <div id="third_space">
+                {% if ranking_users[2] %}
+                    <span id="username3"> {{ranking_users[2].name}} </span>
+                {% endif %}
+                {% if ranking_users[2] and extensions[2] %}
+                    <img src="/static/uploads/profile_pictures/{{ranking_users[2].name + 'pp' + extensions[2] }}" class="pp" alt="Rectangle Logo">
+                {% else %}
+                    <img src="/static/uploads/profile_pictures/defaultpp.png" class="pp" alt="Rectangle Logo">
+                {% endif %}
+            </div>
+            <div id="third_pedestal">
+                <h1 id="place3">3rd</h1>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+        <h1 class="rules_title">Rules</h1>
+        <pre class="rules">{{event_rules}}</pre>
+
+
+    {% endif %}
+    <script src="/static/js/popup.js"></script>
+    <script>
+        var nec = '{{ not_enough_coins }}';
+        // Get the snackbar DIV
+        if ( nec == "True" ) {
+            var x = document.getElementById("snackbar");
+    
+             // Add the "show" class to DIV
+             x.className = "show";
+             
+             // After 3 seconds, remove the show class from DIV
+             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+{% endblock %}
+

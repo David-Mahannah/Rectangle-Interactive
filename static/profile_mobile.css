@@ -1,0 +1,371 @@
+
+.name_panel {
+    margin-left:15px;
+    margin-right:15px;
+    margin-top: 15px;
+    background-color: #353a38;
+    border-radius: 16px;
+}
+
+.title {
+    margin:10px;
+    font-size: 40px;
+}
+
+.user_since {
+    position: absolute;
+    bottom: 40px;
+    left: 215px;
+    font-size: 40px;
+    margin: 0px;
+}
+
+.bio {
+    margin-top: 20px;
+}
+
+.bio_title {
+    margin-left: 30px;
+    font-size: 40px;
+}
+
+.follow_button {
+    background-color: #ff6511;
+    color: white;
+    padding: 24px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    left: 30px;
+    width: 25%;
+    font-size: 40px;
+    white-space: nowrap;
+    text-align: center;
+    box-shadow: 10px 10px 10px #232323;
+}
+
+
+.following_button {
+    position: absolute;
+    background-color: #ff6511;
+    color: white;
+    padding: 24px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 40px;
+    left: 30px;
+    width: 25%;
+    text-align: center;
+    box-shadow: 10px 10px 10px #232323;
+}
+
+.followers_button {
+    position: absolute;
+    background-color: #ff6511;
+    color: white;
+    padding: 24px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 40px;
+    left: 330px;
+    width: 25%;
+    text-align: center;
+    box-shadow: 10px 10px 10px #232323;
+}
+
+
+.share_link {
+    position: absolute;
+    background-color: #ff6511;
+    color: white;
+    padding: 24px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 40px;
+    margin-left: 45px;
+    width: 25%;
+    left: 280px;
+    bottom: 19px;
+    text-align: center;
+    box-shadow: 10px 10px 10px #232323;
+}
+
+.share_link_me {
+    position: absolute;
+    background-color: #ff6511;
+    color: white;
+    padding: 24px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 40px;
+    margin-left: 45px;
+    width: 25%;
+    left: 585px;
+    bottom: 15px;
+    text-align: center;
+    box-shadow: 10px 10px 10px #232323;    
+}
+
+.logo {
+    height: 65px;
+    width: 65px;
+    background-color: #1e2120;
+    border-radius: 10px;
+}
+
+.contents {
+    background-color: #1e2120;
+    padding: 30px;
+    border-radius: 4px;
+    font-size: 30px;
+    min-height: 200px;
+}
+
+.contents p {
+    margin: 0px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+}
+
+/* LEVEL INFO */
+
+.level_info_block {
+    padding: 15px;
+    position: relative;
+    height: 200px;
+    background-color: #1e2120;
+    border-radius: 4px;
+}
+
+
+.top {
+    padding: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+label {
+    margin-left: 20px;
+}
+
+.level_circle {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border-color: white;
+    border: dashed;
+    float: left;
+    text-align: center;
+    line-height: 100px;
+    position: absolute;
+    top: 50px;
+    left: 30px;
+}
+
+.level_circle_coin {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border-color: white;
+    border: dashed;
+    float: left;
+    text-align: center;
+    line-height: 100px;
+    position: absolute;
+    top: 50px;
+    left: 30px;
+}
+
+.level {
+    font-size: 60px;
+    color: white;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+.mid {
+    padding: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 4px;
+}
+
+.progress_bar {
+    background-color: gray; 
+    border-radius: 16px;
+    margin: 17.5px;
+    width: 75%;
+    height: 55px;
+    position: absolute;
+    bottom: 50px;
+    left: 150px;
+}
+
+.bar {
+    height:55px; 
+    background-color:purple; 
+    border-radius: 16px;
+}
+
+.coin_bar {
+    height:55px; 
+    background-color:orange; 
+    border-radius: 16px;
+}
+
+.rank {
+    position: absolute;
+    left: 170px;
+    top: 50px;
+    font-size: 40px; 
+}
+
+.level_info {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 30px;
+}
+
+.level_info_coin {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 30px;
+    color: white;
+}
+
+.level_label {
+    font-size: 40px;
+    margin-left: 30px;
+}
+
+
+.title_bar {
+    background-color: #353a38;
+    position: relative;
+    padding:30px;
+    border-radius: 8px;
+    display: flex;
+    text-align: center;
+    height: 150px;
+}
+
+.logout_button {
+    position: absolute;
+    right: 125px;
+    bottom: 20px;
+    background-color: #ff6511;
+    color: white;
+    padding: 8px 15px;
+    font-size: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid #232323;
+    white-space: nowrap;
+    box-shadow: 5px 5px 5px #232323;
+}
+
+
+.notification_button .badge {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    padding: 3.5px 10px;
+    line-height: 40px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    box-shadow: 5px 5px 5px #232323;
+}
+
+.edit_profile {
+    position: absolute;
+    color: white;
+    left: 30px;
+    bottom: 20px;
+    background-color: #ff6511;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 40px;
+    padding: 8px 15px;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+}
+
+
+.notification_button {
+    position: absolute;
+    color: white;
+    left: 275px;
+    bottom: 20px;
+    background-color: #ff6511;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 40px;
+    padding: 8px 15px;
+    border: 1px solid #232323;
+    box-shadow: 5px 5px 5px #232323;
+}
+
+.pname {
+    margin: 0px;
+    font-size: 60px;
+    margin-left: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.bot {
+    background-color: #353a38;
+    height: 50px;
+    padding: 25px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.profile-picture {
+    border: 5px solid white;
+    width: 150px; 
+    height: 150px;
+    border-radius: 10px;
+}
+    
+.coin {
+    width: 100px;
+}
+
+.ftab {
+    background-color: #353a38;
+    height: 75px;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 15px;
+    margin-bottom: 45px;
+    position: relative;
+}

@@ -1,0 +1,220 @@
+h2 {
+    position: absolute;
+    font-size: 60px;
+    top: 200px;
+    left: 60px;
+}
+
+
+#low {
+	border: 2px solid #f59f70;
+
+	background-image: linear-gradient(to right, #ec7331 , #ff6511);
+
+}
+
+#med {
+	background-image: linear-gradient(to right, #31d6ec , #118cff);
+}
+
+#high {
+	background-image: linear-gradient(to right, #3e31ec , #a811ff);
+}
+
+
+
+#type_low {
+    border: 2px solid #f59f70;
+}
+
+
+#type_med {
+
+}
+
+#type_high {
+
+}
+
+h3 {
+    position: absolute;
+    font-size: 40px;
+    top: 375px;
+    left: 60px;
+}
+
+.card {
+    display: none;
+    height: 1000px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 200px;
+}
+
+.item {
+    padding-top:200px;
+    padding-bottom: 200px;
+    border-bottom: none;
+    border-bottom: none;
+    border-radius: 32px 32px 0px 0px;
+}
+
+.container {
+    padding: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border: 2px solid #575f5b;
+    background-image: linear-gradient(to right, #282c2b , #353a38);
+    border-radius: 0px 0px 32px 32px;
+}
+
+.box p {
+    font-size: 60px;
+    margin: auto;
+    margin-left: 30px;
+    text-shadow: 2px 2px black;
+}
+
+.container img {
+    margin: 0;
+    width: 75px;
+    height: 75px;
+}
+
+
+.box {
+    margin-left: 15px;
+    margin-right: 85px;
+    width: fit-content;
+    display: flex;
+}
+
+.shell {
+    margin-top: 500px;
+}
+
+.text {
+    font-size: 80px;
+    text-align: center;
+    text-shadow: 2px 2px black;
+}
+
+.cost {
+    font-size: 30px;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 80px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  .next {
+    right: 15px;
+    border-radius: 3px 0 0 3px;
+    border: 3px #ff6511;
+}
+
+
+.prev {
+    left: 15px;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: .5s;
+    animation-name: fade;
+    animation-duration: 0.1 s;
+    position: relative;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+  .type {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 40px;
+    background: black;
+    padding: 15px 15px;
+    border-radius: 16px;
+}
+
+  .owned {
+    position: absolute;
+    bottom: 360px;
+    right: 30px;
+    font-size: 40px;
+    text-shadow: 2px 2px black;
+}
+
+.back_side {
+    height: 750px;
+    border-radius: 32px;
+    background-image: linear-gradient(to right, #ec7331 , #ff6511);
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.cancel {
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-size: 60px;
+    display: block;
+    background-image: linear-gradient(to right, #282c2b , #353a38);
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    margin-bottom: 10%;
+    border-radius: 32px;
+    border: 3px solid #68706c;
+}
+
+.buy {
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-size: 60px;
+    display: block;
+    background-image: linear-gradient(to right, #282c2b , #353a38);
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    margin-bottom: 10%;
+    border-radius: 32px;
+    border: 3px solid #68706c;
+}
+
+.buy_and_use {
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-size: 60px;
+    display: block;
+    background-image: linear-gradient(to right, #282c2b , #353a38);
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    margin-bottom: 10%;
+    border-radius: 32px;
+    border: 3px solid #68706c;
+}

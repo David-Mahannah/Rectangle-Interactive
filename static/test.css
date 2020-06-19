@@ -1,0 +1,314 @@
+ /* Style the button that is used to open and close the collapsible content */
+ .collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .collapsible:hover {
+    background-color: #ccc;
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    display: block;
+  } 
+
+  .text {
+    padding: 10px 10px;
+    overflow: hidden;
+    background-image: linear-gradient(rgb(50, 50, 50), #242525);
+    word-wrap: break-word;
+    font-size: 15px;
+  }
+
+.top  {
+    background-image: linear-gradient(#444, #515352);
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    height: 65px;
+    position: relative;
+}
+
+
+.name {
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 37.5px;
+    left: 80px;
+    color: white;
+    
+}
+
+.level {
+    font-size: 15px;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 80px;
+    color: white;
+}
+
+
+
+.logo {
+    height: 65px;
+    width: 65px;
+    background-color: #1e2120;
+
+}
+
+
+.logo img {
+
+}
+
+
+.profile_card {
+  margin: auto;
+  margin-top: 10px;
+  width: 750px;
+}
+
+.data {
+  background-image: linear-gradient(rgb(50, 50, 50), #242525);
+  padding: 10px;
+  position: relative;
+  margin-top: 0px;
+}
+
+.data_header {
+  background-image: linear-gradient(#444, #515352);
+}
+
+.data_header p {
+  padding: 10px;
+  margin: 0px;
+  margin-top: 30px;
+}
+
+.next_level {
+  position: absolute;
+  right: 20px;
+  bottom: 0px;
+  font-size: 12px;
+}
+
+.friend_count {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.total_likes {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.lifetime_posts {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+/*
+
+Settings
+
+*/
+
+.upload_file {
+  color: white;
+}
+
+.settings_logo {
+  border: dashed;
+  border-color: #ff6511;
+  height: 55px;
+  width: 55px;
+  background-color: #1e2120;
+}
+
+.settings_level {
+  font-size: 15px;
+  text-align: center;
+  position: absolute;
+  bottom: 30px;
+  left: 80px;
+  color: white;
+}
+
+.settings_name {
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  bottom: 60px;
+  left: 80px;
+  color: white;
+}
+
+.settings_top{
+  background-color: #353a38;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  height: 75px;
+  position: relative;
+}
+
+.settings_text{
+  padding: 10px;
+  background-color: #1e2120;
+}
+
+.settings_text textarea{
+    width: 455px;
+    height: 200px;
+    margin: auto;
+    background-color: #0f1110;
+    color: white;
+    padding: 10px;
+    resize: none;
+    border: dashed;
+    border-color: #ff6511;
+}
+/*
+
+Tabs
+
+*/
+
+.profile_options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0px;
+  list-style-type: none;
+  padding:0px;
+  margin:0;
+  overflow: hidden;
+  font-size: 15px;
+  background-color: #ff6511;
+}
+
+.profile_options_item {
+  float: left;
+}
+
+.profile_options_item a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.profile_options_item a:hover {
+  background-color:#c14c0d;
+}
+
+.tab {
+  overflow: hidden;
+}
+
+.tab button{
+  background-image: linear-gradient(rgb(50, 50, 50), #242525);
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  transition: 0.3s;
+  color: white;
+}
+
+
+.tab button.active {
+  background-image: linear-gradient(rgb(50, 50, 50), #545454);
+}
+
+
+
+/*
+  small profiles
+*/
+
+
+.friends {
+  width: 750px;
+  background-image: linear-gradient(rgb(50, 50, 50), #242525);
+  padding: 10px;
+}
+
+.small_top {
+  background-image: linear-gradient(#444, #515352);
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  height: 45px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.small_logo {
+  height: 45px;
+  width: 45px;
+  background-color: #1e2120;
+}
+
+.small_name {
+  font-size: 15px;
+  text-align: center;
+  position: absolute;
+  bottom: 37.5px;
+  left: 60px;
+  color: white;
+}
+
+
+.small_level {
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  left: 60px;
+  color: white;
+}
+
+.small_profile_dropdown {
+}
+
+.right_box {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  list-style-type: none;
+  background-color: #ff6511;
+  margin: 0px;
+  width: 50%;
+  float: right;
+}
+.small_profile_dropdown_button {
+}
+
+.small_profile_dropdown_button a {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

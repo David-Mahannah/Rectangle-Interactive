@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Search </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='following.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='edit_events_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='search_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+
+{% endblock %}
+
+{% block body %}
+<div>
+    <a class="back" href="/moderator">Back</a>
+</div>
+<div class="events">
+    {% for event in events %}
+    {% if edit == event.title %}
+    <div class="prompt">
+        <form action='/edit_events/{{ edit }}' method='POST'>
+            <br>
+            <br>
+            <br>
+            <label for="fname" class="labels">Title</label>
+            <div class="prompt_text">
+                <br>
+                <textarea type="text" rows = "1" name='text1' id='text1'>{{ event.title }}</textarea>
+            </div>
+            <label for="fname" class="labels">Rules</label>
+            <div class="prompt_text">
+                <br>
+                <textarea type="text" rows = "7" name='text2' id='text2'>{{ event.rules }}</textarea>
+            </div>
+            <label for="fname" class="labels">Description</label>
+            <div class="prompt_text">
+                <br>
+                <textarea type="text" rows = "7" name='text3' id='text3'>{{ event.description }}</textarea>
+            </div>
+            <div class="custom-select" style="width:200px;">
+                <select name="select">
+                    <option value="0">Monday</option>
+                    <option value="1">Tuesday</option>
+                    <option value="2">Wednesday</option>
+                    <option value="3">Thursday</option>
+                    <option value="4">Friday</option>
+                    <option value="5">Saturday</option>
+                    <option value="6">Sunday</option>
+                </select>
+            </div>
+                <input type='submit' value='Save'>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                {% endif %}
+            </form>
+        </div>
+    {% else %}
+    <div class="title_bar">
+        <div class="name_and_level">
+        <p class="title">{{ event.title }}</p>
+        <h2> Rules </h2>
+        <pre class="rules">{{ event.rules }}</pre>
+        <h2> Description </h2>
+        <p class="rules">{{ event.description }}</p>
+        <a class="edit_button" href="{{ event.title }}">edit</a>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,215 @@
+
+.back {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+.back a {
+    margin: 40px;
+    margin-left: 20px;
+    background-color: #ff6511;
+    color: white;
+    font-size: 20px;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space:nowrap;
+    border-radius: 4px;
+}
+
+.post {
+    margin-bottom:15px;
+}
+
+
+.grid_posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.comment{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+.comment_top {
+    display: block;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    color:white;
+    background:#353a38;
+    cursor: pointer;
+    position: relative;
+}
+
+.small_branch {
+    position: absolute;
+    width: 10px;
+    background-color: #ff6511;
+    height: 48%;
+    left:0px;
+}
+
+.med_branch {
+    position: absolute;
+    width: 10px;
+    background-color: #ff6511;
+    height: 100%;
+}
+
+.large_branch {
+    position: absolute;
+    width: 10px;
+    background-color: #ff6511;
+    height: 100%;
+    left: 10px;
+}
+
+.primary_comment {
+    position: relative;
+}
+
+.secondary_comment {
+    position: relative;
+    margin-left: 20px;
+}
+
+.tertiary_comment {
+    margin-left: 20px;
+}
+
+.comment_name {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.comments_ {
+    position: relative;
+}
+
+.comments{
+    position: relative;
+    padding-right: 10px;
+    padding-left: 30px;
+}
+
+.comment_like_count {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.comment_time_stamp {
+    margin: 0px;
+    position: absolute;
+    float: right;
+    right: 15px;
+    bottom: 3px;
+}
+
+.comment_content_inner {
+    background-color:#1e2120;
+}
+
+.new_post {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.comment_drop_box {
+
+}
+
+.comment_mid {
+    background-color:#1e2120;
+}
+
+.comment_bot {
+    background-color: #353a38;
+    position: relative;
+    height: 30px;
+}
+
+.comment_text {
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+.delete {
+    position: absolute;
+    bottom: 6px;
+    right: 15px;
+    color: #ff6511
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #ff6511;
+    margin-left: -10px;
+    position: absolute;
+    right: 35px;
+    bottom: 15px;
+}
+
+.triangle-closed {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid #555;
+        margin-left: -10px;
+}
+
+.delete img {
+    width: 17.5px;
+    height: 17.5px;
+}
+
+
+.collapsable_comment {
+    margin-top: 10px;
+}
+
+.content {
+    position: relative;
+}
+
+.comment_like_button {
+    position: absolute;
+    float: left;
+    left: 10px;
+    bottom: 3px;
+    background-color:#ff6511;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 3px 5px;
+    border: 1px solid#232323;
+}
+
+.comment_comment_button {
+    position: absolute;
+    float: left;
+    left: 85px;
+    bottom: 3px;
+    background-color:#ff6511;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 3px 5px;
+    border: 1px solid#232323;
+}

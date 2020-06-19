@@ -1,0 +1,42 @@
+
+@font-face {
+    font-family: Computer Font;
+    src: url(Computerfont.ttf);
+}
+
+
+@font-face {
+    font-family: KA;
+    src: url(ka1.ttf);
+}
+
+
+head {
+    font-family: 'Lucida Console', 'Courier New', monospace;
+    background-color: black; 
+    color: white;
+}
+
+body {
+  font-family: 'Lucida Console', monospace;
+    background-color: black; 
+    color: white;
+    margin: 0px;
+}
+
+
+a {
+    display: block;
+    padding: 30px 15px;
+    background-color: #ff6511;
+    color: white;
+    font-size: 50px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.holder {
+    padding: 30px;
+}

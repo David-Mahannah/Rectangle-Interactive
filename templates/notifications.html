@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='notifications.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='notifications_mobile.css') }}" />
+<title> Notifications </title>
+{% endblock %}
+
+{% block body %}
+    <div class="back">
+        <a href="/profile/{{ _current_user.name }}"> Back </a>
+    </div>
+    <h1 class="title">Notifications</h1>
+    <div class="grid_posts">
+        {% for notification in notifications %}
+                <a href='/notifications/yes/{{notification.id}}'>
+                    <div class="post" >
+                    <div class="middle">
+                        <p class="notification_text"> {{ notification.message }} </p>
+                        <a class="delete" href="/delete_notification/{{ notification.id }}">
+                            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                        </a>
+                        <p class="notification_timestamp""> {{ notification.time_created.strftime("%X") }} </p>
+                    </div>
+            </div>
+            </a>
+        {% endfor %}
+{% endblock %}

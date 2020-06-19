@@ -1,0 +1,14 @@
+{% block head %}
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='404_mobile.css') }}" />
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+{% endblock %}
+
+{% block body %}
+<body>
+      <div>
+        <h1>Something went wrong...</h1>
+        <h1> The Post or Comment you were looking for was most likely deleted </h1>
+      </div>
+</body>
+{% endblock %}

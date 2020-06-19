@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='notifications.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='events_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='shop_mobile.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> Notifications </title>
+{% endblock %}
+
+{% block body %}
+<div class="coin_bar">
+    <div class="coin_circle"><a href="/addcoins"><img src="/static/uploads/resources/coin.png" class="coin"></a></div>
+    <h1>{{user.coins}}</h1>
+    <div class="coin_dropdown"> </div>
+</div>
+<div class="shell">
+<h2> Shop </h2>
+<div class="cards">
+    <h3> Titles: </h3>
+    
+
+
+    <div class="card fade front" onclick="flipcard()">
+        <div class="item" id="low">
+            <a class="type" id="type_low">Title</a>
+            <a class="owned">
+            {% if titles[0] in user.titles %}
+            Owned
+            {% else %}
+            Not Owned
+            {% endif %}
+            </a>
+            <p class="text"><b>{{ titles[0].text }}</b></p>
+        </div>
+        <div class="container" onclick="location.href = '/shop/{{ titles[0].id }}';">
+            <div class="box">
+                <img src="/static/uploads/resources/coin.png" class="coin">
+                <p>{{ titles[0].cost }}</p>
+            </div>
+        </div>
+    </div> 
+    <div style="display: none;" class="back_side">
+      <a class="buy_and_use" href="/shop/{{ titles[0].id }}">Buy and Use</a>
+      <a class="buy" href="/shop/{{ titles[0].id }}">Buy</a>
+      <a class="cancel" onlcick="flip()">Cancel</a>
+    </div>
+
+
+
+
+    <div class="card fade front" onclick="flipcard()">
+        <div class="item" id="med">
+            <a class="type" id="type_med">Title</a>
+            <a class="owned">
+            {% if title in user.titles[1] %}
+            Owned
+            {% else %}
+            Not Owned
+            {% endif %}
+            </a>
+            <p class="text"><b>{{ titles[1].text }}</b></p>
+        </div>
+        <div class="container" onclick="location.href = '/shop/{{ titles[1].id }}';">
+            <div class="box">
+                <img src="/static/uploads/resources/coin.png" class="coin">
+                <p>{{ titles[1].cost }}</p>
+            </div>
+        </div>
+    </div> 
+    <div style="display: none;" class="back_side">
+      <a class="buy_and_use" href="/shop/{{ titles[1].id }}">Buy and Use</a>
+      <a class="buy" href="/shop/{{ titles[1].id }}">Buy</a>
+      <a class="cancel" onlcick="flip()">Cancel</a>
+    </div>
+    
+
+
+
+    <div class="card fade front" onclick="flipcard()">
+        <div class="item" id="high">
+            <a class="type" id="type_high">Title</a>
+            <a class="owned">
+            {% if titles[2] in user.titles %}
+            Owned
+            {% else %}
+            Not Owned
+            {% endif %}
+            </a>
+            <p class="text"><b>{{ titles[2].text }}</b></p>
+        </div>
+        <div class="container" onclick="location.href = '/shop/{{ titles[2].id }}';">
+            <div class="box">
+                <img src="/static/uploads/resources/coin.png" class="coin">
+                <p>{{ titles[2].cost }}</p>
+            </div>
+        </div>
+    </div> 
+    <div style="display: none;" class="back_side">
+      <a class="buy_and_use" href="/shop/{{ titles[2].id }}">Buy and Use</a>
+      <a class="buy" href="/shop/{{ titles[2].id }}">Buy</a>
+      <a class="cancel" onlcick="flip()">Cancel</a>
+    </div>
+
+</div>
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>      
+
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("card");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+      }
+      slides[slideIndex-1].style.display = "block";  
+    }
+    </script>
+{% endblock %}

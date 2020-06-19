@@ -1,0 +1,220 @@
+
+body {
+    margin: 0px;
+    background-color: black;
+}
+
+
+.login {
+    background-color: black;
+    height: 100%;
+}
+
+.login_box {
+    border-radius: 5px;
+    background-color: #1e2120;
+    padding: 30px;
+    border: 5px solid #353a38;
+    border-radius: 16px;
+    width:875px;
+    height:650px;
+}
+
+.forgot_box {
+    border-radius: 5px;
+    background-color: #1e2120;
+    padding: 30px;
+    margin: auto;
+    border: 5px solid #353a38;
+    border-radius: 16px;
+    width:875px;
+    height:425px;   
+}
+
+.error {
+    margin:0px;
+    margin-top: 20px;
+    font-size: 40px;
+    color: #ff6511;
+}
+
+
+.create_account_box {
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: #1e2120;
+    padding: 30px;
+    border: 5px solid #353a38;
+    border-radius: 16px;
+    width:875px;
+    height:1100px;
+}
+
+
+.labels {
+    color: #ff6511;
+    font-size: 50px;
+    margin: 10px;
+}
+
+
+input[type=text], select {
+    width: 100%;
+    padding: 36px 60px;
+    font-size: 50px;
+    margin: 8px 0;
+    color: white;
+    display: inline-block;
+    border: 5px solid #353a38;
+    background-color: black;
+    border-radius: 16px;
+    box-sizing: border-box;
+  }
+
+input[type=password], select {
+    width: 100%;
+    padding: 36px 60px;
+    font-size: 50px;
+    margin: 8px 0;
+    color: white;
+    display: inline-block;
+    border: 5px solid #353a38;
+    background-color: black;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #ff6511;
+    color: white;
+    font-size: 50px;
+    padding: 28px 40px;
+    margin: 8px 0;
+    margin-top:30px;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #c14c0d;
+}
+
+.create_account:hover {
+    background-color: #c14c0d;
+}
+
+.create_account {
+    height: 70px;
+    background-color: #ff6511;
+    color: white;
+    padding: 20px 27.5px;
+    border: none;
+    font-size: 50px;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space:nowrap;
+}
+
+.login_button {
+    height: 70px;
+    background-color: #ff6511;
+    color: white;
+    padding: 20px 120px;
+    border: none;
+    font-size: 50px;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space:nowrap;
+}
+
+.forgot_account:hover {
+    background-color: #c14c0d;
+}
+
+.forgot_account {
+    background-color: #ff6511;
+    color: white;
+    font-size: 50px;
+    padding: 20px 27.5px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space:nowrap;
+}
+
+.logo img{
+    width:650px;
+    display: block;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottom_buttons_container {
+    border-radius: 5px;
+    background-color: #1e2120;
+    padding: 30px;
+    margin-top: 30px;
+    border: 5px solid #353a38;
+    border-radius: 16px;
+    justify-content:space-between;
+    width:880px;
+    display:flex;
+
+}
+
+.post {
+    border: 1px solid #474f4c;
+    border-radius: 4px;
+    height: 240px;
+    margin-bottom:10px;
+
+}
+
+
+.post_date {
+    color: white;
+    margin:0px;
+    padding:5px;
+}
+
+.post_text {
+    color: white;
+    background-color: #1e2120;
+    margin: 0px;
+    height: 50px;
+    border: 1px solid #474f4c;
+    border-radius: 4px;
+    padding:10px;
+    height: 172px;
+}
+
+.top {
+    background-color: #353a38;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    height: 28px;
+}
+
+
+
+.middle {
+    background-color: #353a38;
+    padding: 10px;
+    padding-top: 0px;
+    height: 192px;
+}
+
+
+

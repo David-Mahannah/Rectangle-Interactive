@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Search </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='following.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='posts.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='users.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='users_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='search_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='edit_titles_mobile.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+
+{% endblock %}
+
+{% block body %}
+    <div>
+        <a class="back" href="/moderator">Back</a>
+    </div>
+    {% for user in user_results %}
+    <div class="title_bar">
+        <a class="follow_button" href="/edit_users/delete/{{ user[0].name }}"> Delete</a>
+        {% if user[1] != None %}
+        <div class="logo">
+            <img src="/static/uploads/profile_pictures/{{ user[0].name + 'pp' + user[1] }}" class="pp" alt="Rectangle Logo">
+        </div>      
+        {% else %}
+        <div class="logo">
+            <img src="/static/uploads/profile_pictures/defaultpp.png" class="pp" alt="Rectangle Logo">
+        </div>
+        {% endif %}
+        <div class="name_and_level">
+        <a class="pname" href="/profile/{{user[0].name}}"> {{ user[0].name }} </a>
+        <p class="level"> Level: {{ user[0].level }}</p>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

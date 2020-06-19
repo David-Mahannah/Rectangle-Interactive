@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Search </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='following.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='posts.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='users.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='users_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='search_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+
+{% endblock %}
+
+{% block body %}
+
+    <form class="example" action="/search/{{ typ }}" method="POST">
+        <input type="text" placeholder="Search..." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+	{% if typ == "Post" %}
+	<ul class="filters">
+		<li class="selected_filters_item"><a href="/search/Post">Posts</a></li>
+        <li class="filters_item"><a href="/search/User">Users</a></li>
+    </ul>
+    {% elif typ == "User" %}
+	<ul class="filters">
+        <li class="filters_item"><a href="/search/Post">Posts</a></li>
+        <li class="selected_filters_item"><a href="/search/User">Users</a></li>
+    </ul>
+    {% endif %}
+    
+
+    {% if posts %}
+      <div class="grid_posts">
+        {% for post in posts %}
+        <div class="new_post_feed">
+            <div class="new_top">
+                <a class="like_count"> {{ post.like_count}} </a>
+                <a href="{{ '/profile/{0}'.format(post.user.name) }}" class="name">{{ post.user.name }}</a>
+                
+                {% if user == post.user %}
+                <a class="delete" href="/delete/feed/None/None/post/{{ post.id }}">
+                    <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                </a>      
+                {% endif %}
+            </div>
+            <div>
+              <div class="new_inner">
+                  <div class="text">
+                    <p>
+                        {{ post.text }}
+                    </p>
+                </div>
+                <div class="new_bottom">
+                    <a href="/comments/feed/post/{{ post.id }}/{{which}}" class="comment_link">comments({{post.comments|length}})</a>
+                    <a href="/like/feed/None/None/post/{{ which }}/{{ post.id }}" class="like_link">
+                        {% if user in post.likes %}
+                            unlike
+                        {% else %}
+                            like
+                        {% endif %}
+                    </a>
+                    <p class="date"> {{ post.time_created.strftime("%X") }} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+    {% elif user_results %}
+    {% for user in user_results %}
+    <div class="title_bar">
+        {% if session["user"] != user[0].name %}
+            {% if cu in user[0].followers %}
+                <a class="follow_button" href="/follow/{{ user[0].name }}"> Unfollow</a>
+            {% else %}
+                <a class="follow_button" href="/follow/{{ user[0].name }}"> Follow</a>
+            {% endif %}
+            <a class="report_button" href="/report/{{ user[0].name }}">Report</a>
+        {% endif %}
+        {% if user[1] != None %}
+        <div class="logo">
+            <img src="/static/uploads/profile_pictures/{{ user[0].name + 'pp' + user[1] }}" class="pp" alt="Rectangle Logo">
+        </div>      
+        {% else %}
+        <div class="logo">
+            <img src="/static/uploads/profile_pictures/defaultpp.png" class="pp" alt="Rectangle Logo">
+        </div>
+        {% endif %}
+        <div class="name_and_level">
+        <a class="pname" href="/profile/{{user[0].name}}"> {{ user[0].name }} </a>
+        <p class="level">{{ user[0].title }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+{% endblock %}

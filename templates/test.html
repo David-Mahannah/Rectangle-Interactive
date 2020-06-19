@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='test_mobile.css') }}" />
+<title> Notifications </title>
+{% endblock %}
+
+{% block body %}
+
+    <div class="profile_card"> 
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'profile')" id="defaultOpen">Profile</button>
+            <button class="tablinks" onclick="openTab(event, 'friends')">Friends</button>
+            <button class="tablinks" onclick="openTab(event, 'settings')">Settings</button>
+        </div>
+        
+        <div id="profile" class="tabcontent">
+            <div class="top" onclick="expand('content')">
+                <div class="logo">
+                    <img src="/static/assets/skeleton.PNG" style="width: 65px;" alt="Rectangle Logo">
+                </div>
+                <label class="name">David </label>
+                <label class="level">Level: 2</label>
+            </div>
+        
+            <div id="content" class="content">
+                <div class="text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit orci magnis, lacus rhoncus placerat nibh taciti sagittis sociosqu. Ad hendrerit tortor porta rhoncus volutpat at imperdiet lacinia aliquam semper, integer nulla vel dapibus dictum condimentum platea tristique magna, proin arcu congue senectus sociosqu per nunc facilisis elementum. Varius duis at pretium ultricies volutpat nulla, pellentesque felis commodo in mus nascetur, fermentum sociosqu aliquet ac augue.</p>
+                </div>
+            </div>
+            <div class="data_header"><p style="font-size: 20px;"> Data </p></div>
+            <div class="data">
+                <p class="friend_count">Friend Count: 15</p>
+                <p class="lifetime_posts"> Lifetime Posts: 10</p>
+                <p class="total_likes"> Total Likes: 10</p>
+                <div class="progress_bar" style="background-color: gray; border-radius: 8px;">
+                    <div id="bar" style="height:24px; width:30%; background-image: linear-gradient(#ff6511, #8e390b); margin-bottom: 20px;  border-radius: 8px;"></div>
+                </div>
+                <p class="next_level"> Next Level: 100</p>
+            </div>
+        </div>
+
+        <div id="friends" class="tabcontent">
+            <div class="friends">
+                <h3>Friend Requests</h3>
+                <p>none</p>
+                <h3>Friends</h3>
+                <div class="small_top">
+                    <div class="small_logo">
+                        <img src="/static/assets/skeleton.PNG" style="width: 45px;" alt="Rectangle Logo">
+                    </div>
+                    <label class="small_name">David </label>
+                    <label class="small_level">Level: 2</label>
+                </div>
+                <div class="small_top">
+                    <div class="small_logo">
+                        <img src="/static/assets/skeleton.PNG" style="width: 45px;" alt="Rectangle Logo">
+                    </div>
+                    <label class="small_name">David </label>
+                    <label class="small_level">Level: 2</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="notifications" class="tabcontent">
+
+        </div>
+
+        <div id="messages" class="tabcontent">
+
+        </div>
+           
+        <div id="settings" class="tabcontent">
+            <div class="settings_top" onclick="expand('content')">
+                <div class="settings_logo">
+                    <img src="/static/assets/photo.PNG" style="width: 55px;" alt="Rectangle Logo">
+                </div>
+                <input type="file" class="upload_file">
+                <label class="settings_name">David </label>
+                <label class="settings_level">Level: 2</label>
+            </div>
+        
+            <div id="content" class="content">
+                <div class="settings_text">
+                    <h3 style="margin:0px">Edit Bio:</h3>
+                    <textarea></textarea>
+                </div>
+               <div class="bottom">
+    
+                <label class="time"></label>
+               </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/test.js"></script>
+{% endblock %}

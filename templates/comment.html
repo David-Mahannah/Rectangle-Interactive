@@ -1,0 +1,269 @@
+{% extends "comments copy.html"%}
+
+
+{% block collapsable_primary_comment %}
+<div class="collapsable_comment" onclick="collapse(this)">
+    <!-- * Top of comment -->
+    <label class="comment_top">
+        <div class="triangle"></div>
+        <a class="comment_like_count">  {{ comment[0].likes|length }} </a>
+        <a href="/profile/{{ parent.user.name }}" class="comment_name">  {{ comment[0].user.name }} </a>
+        <a class="delete" href="/delete/comments/{{parent.id}}/{{posttype}}/comment/{{comment[0].id}}">
+            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+        </a>       
+    </label>
+    <!-- * Top of comment -->
+
+    <!-- * Bottom of comment -->
+    <div class="comment_drop_box">
+    <div class="comment_content_inner">
+        <!-- * Inner -->
+        <div class="comment_text">
+            <p style="margin:0px;"> {{ comment[0].text }} </p>
+        </div>
+        <!-- * Inner -->
+
+        <!-- * Bottom-->
+        <div class="comment_bot">
+            <a href="/comments/None/comment/{{ comment[0].id }}/{{which}}" class="comment_comment_button">comments({{ comment[0].children_comments.all()|length }})</a>
+            
+            {% if posttype == "post" %}
+                <a href="/like/comments/{{parent.id}}/post/comment/None/{{comment[0].id}}" class="comment_like_button">
+                    {% if user in comment[0].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+                {% elif posttype == "comment" %}
+                <a href="/like/comments/{{parent.id}}/comment/comment/None/{{comment[0].id}}" class="comment_like_button">
+                    {% if user in comment[0].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+                {% endif %}
+                <p class="comment_time_stamp"> {{ comment[0].time_created.strftime("%X") }} </p>
+            </div>
+            <!-- * Bottom-->
+        </div>
+    </div>
+    <!-- * Bottom of comment -->
+</div>
+{% endblock %}
+
+
+
+{% block collapsable_secondary_comment_1 %}
+<div class="collapsable_comment" onclick="collapse(this)">
+    
+    <!-- * top of comment -->
+    <label class="comment_top">
+        <div class="triangle"></div>
+        <a class="comment_like_count">  {{ comment[1][0].likes|length }} </a>
+        <a href="/profile/{{ parent.user.name }}" class="comment_name">  {{ comment[1][0].user.name }} </a>
+        <a class="delete" href="/delete/comments/{{parent.id}}/{{posttype}}/comment/{{comment[1][0].id}}">
+            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+        </a>     
+    </label>
+    <!-- * top of comment-->
+    
+    <!-- * Bottom of comment -->
+    <div class="comment_drop_box">
+        <div class="comment_content_inner">
+            <!-- * Inner -->
+            <div class="comment_text">
+                <p style="margin:0px;"> {{ comment[1][0].text }} </p>
+            </div>
+            <!-- * Inner -->
+            
+            <!-- * Bottom -->
+            <div class="comment_bot">
+                <a href="/comments/None/comment/{{ comment[1][0].id }}/{{which}}" class="comment_comment_button">comments({{ comment[1][0].children_comments.all()|length }})</a>
+            
+                {% if posttype == "post" %}
+                    <a href="/like/comments/{{parent.id}}/post/comment/None/{{comment[1][0].id}}" class="comment_like_button">
+                        {% if user in comment[1][0].likes %}
+                            unlike
+                        {% else %}
+                            like
+                        {% endif %}
+                    </a>
+                {% elif posttype == "comment" %}
+                    <a href="/like/comments/{{parent.id}}/comment/comment/None/{{comment[1][0].id}}" class="comment_like_button">
+                        {% if user in comment[1][0].likes %}
+                            unlike
+                        {% else %}
+                            like
+                        {% endif %}
+                    </a>
+                {% endif %}
+                <p class="comment_time_stamp"> {{ comment[1][0].time_created.strftime("%X") }} </p>
+            </div>
+            <!-- * Bottom-->
+        </div>
+    </div>
+    <!-- * Bottom of comment -->
+</div>
+{% endblock %}
+
+
+
+{% block collapsable_secondary_comment_2 %}
+<div class="collapsable_comment" onclick="collapse(this)">
+
+    <!-- * Top of comment -->
+    <label class="comment_top">
+        <div class="triangle"></div>
+        <a class="comment_like_count">  {{ comment[2][0].likes|length }} </a>
+        <a href="/profile/{{ parent.user.name }}" class="comment_name">  {{ comment[2][0].user.name }} </a>
+        <a class="delete" href="/delete/comments/{{parent.id}}/{{posttype}}/comment/{{comment[2][0].id}}">
+            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+        </a>
+    </label>
+    <!-- * Top of comment -->
+
+    <!-- * Bottom of comment -->
+    <div class="comment_drop_box">
+    <div class="comment_content_inner">
+        <!-- * Inner -->
+        <div class="comment_text">
+            <p style="margin:0px;"> {{ comment[2][0].text }} </p>
+        </div>
+        <!-- * Inner -->
+        <!-- * Bottom -->
+        <div class="comment_bot">
+            <a href="/comments/None/comment/{{ comment[2][0].id }}/{{which}}" class="comment_comment_button">comments({{ comment[2][0].children_comments.all()|length }})</a>
+            
+            {% if posttype == "post" %}
+                <a href="/like/comments/{{parent.id}}/post/comment/None/{{comment[2][0].id}}" class="comment_like_button">
+                    {% if user in comment[2][0].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+            {% elif posttype == "comment" %}
+                <a href="/like/comments/{{parent.id}}/comment/comment/None/{{comment[2][0].id}}" class="comment_like_button">
+                    {% if user in comment[2][0].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+            {% endif %}
+            <p class="comment_time_stamp"> {{ comment[2][0].time_created.strftime("%X") }} </p>
+        </div>
+        <!-- * Bottom -->
+        </div>
+    </div>
+    <!-- * Bottom of comment -->
+</div>
+{% endblock %}
+
+
+{% block tertiary_comment_1 %}
+<div class="comment">
+    <!-- * Top of comment -->
+    <label class="comment_top">
+        <a class="comment_like_count">  {{ comment[1][1].likes|length }} </a>
+        <a href="/profile/{{ parent.user.name }}" class="comment_name">  {{ comment[1][1].user.name }} </a>
+        <a class="delete" href="/delete/comments/{{parent.id}}/{{posttype}}/comment/{{comment[1][1].id}}">
+            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+        </a>    
+    </label>
+    <!-- * Top of comment -->
+
+    <!-- * Bottom of comment -->
+    <div class="comment_drop_box">
+    <div class="comment_content_inner">
+        <!-- * Inner -->
+        <div class="comment_text">
+            <p style="margin:0px;"> {{ comment[1][1].text }} </p>
+        </div>
+        <!-- * Inner -->
+        <!-- * Bottom -->
+        <div class="comment_bot">
+            <a href="/comments/None/comment/{{ comment[1][1].id }}/{{which}}" class="comment_comment_button">comments({{ comment[1][1].children_comments.all()|length }})</a>
+            
+            {% if posttype == "post" %}
+                <a href="/like/comments/{{parent.id}}/post/comment/None/{{comment[1][1].id}}" class="comment_like_button">
+                    {% if user in comment[1][1].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+            {% elif posttype == "comment" %}
+                <a href="/like/comments/{{parent.id}}/comment/comment/None/{{comment[1][1].id}}" class="comment_like_button">
+                    {% if user in comment[1][1].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+            {% endif %}
+            <p class="comment_time_stamp"> {{ comment[1][1].time_created.strftime("%X") }} </p>
+        </div>
+            <!-- * Bottom -->
+        </div>
+    </div>
+    <!-- * Bottom of comment -->
+</div>
+{% endblock %}
+
+
+
+
+
+{% block tertiary_comment_2 %}
+<div class="comment" >
+    <!-- * Top of comment -->
+    <label class="comment_top">
+        <a class="comment_like_count">  {{ comment[2][1].likes|length }} </a>
+        <a href="/profile/{{ parent.user.name }}" class="comment_name">  {{ comment[2][1].user.name }} </a>
+        <a class="delete" href="/delete/comments/{{parent.id}}/{{posttype}}/comment/{{comment[2][1].id}}">
+            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+        </a>     
+    </label>
+    <!-- * Top of comment -->
+
+    <!-- * Bottom of comment -->
+    <div class="comment_drop_box">
+    <div class="comment_content_inner">
+        <!-- * Inner -->
+        <div class="comment_text">
+            <p style="margin:0px;"> {{ comment[2][1].text }} </p>
+        </div>
+        <!-- * Inner -->
+
+        <!-- * Bottom -->
+        <div class="comment_bot">
+            <a href="/comments/None/comment/{{ comment[2][1].id }}/{{which}}" class="comment_comment_button">comments({{ comment[2][1].children_comments.all()|length }})</a>
+            
+            {% if posttype == "post" %}
+                <a href="/like/comments/{{parent.id}}/post/comment/None/{{comment[2][1].id}}" class="comment_like_button">
+                    {% if user in comment[2][1].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+            {% elif posttype == "comment" %}
+                <a href="/like/comments/{{parent.id}}/comment/comment/None/{{comment[2][1].id}}" class="comment_like_button">
+                    {% if user in comment[2][1].likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+            {% endif %}
+            <p class="comment_time_stamp"> {{ comment[2][1].time_created.strftime("%X") }} </p>
+        </div>
+        <!-- * Bottom-->
+        </div>
+    </div>
+    <!-- * Bottom of comment -->
+</div>
+{% endblock %}

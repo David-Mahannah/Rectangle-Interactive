@@ -1,0 +1,71 @@
+
+.post {
+    position: relative;
+    background-color: black;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 30px;
+    border-radius: 16px;
+    height: 55px;
+    border: #ff6511;
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 50px;
+
+}
+
+.notification_text {
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+    margin-top: 5px;
+    float: left;
+}
+
+.notification_timestamp {
+    position: absolute;
+    top: -30px;
+    margin: 0;
+    margin-left: 50px;
+    background-color: black;
+    font-size: 40px;
+    padding: 5px;
+    border-radius: 16px;
+}
+
+.title {
+    margin-left: 30px;
+    font-size: 60px;
+  }
+
+  .delete {
+    position:absolute; 
+    bottom: 30px;
+    right:25px; 
+    color:#ff6511;
+}
+
+.delete img {
+    width: 50px;
+    height: 50px;
+}
+
+.back {
+    margin-bottom: 80px;
+}
+
+.back a {
+    margin: 60px;
+    margin-left: 60px;
+    margin-left: 25px;
+    background-color: #ff6511;
+    color: white;
+    font-size: 40px;
+    padding: 40px 100px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 16px;
+}

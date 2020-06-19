@@ -1,0 +1,421 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='comments.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='feed.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='posts.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 481px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='feed_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 481px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 481px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='comments_mobile.css') }}"/>
+<title> Rectangle </title>
+{% endblock %}
+
+{% block body %}
+<body>
+    <script src="/static/js/test.js"></script>
+    <div class="back">
+        {% if posttype == "event_post" %}
+            <a href="/events/0/{{which}}/Event/False"> Back </a>
+        {% elif posttype == "event_comment" %}
+            <a href="/event_comments/event_comments/{{ parent_of_parent_type}}/{{parent_of_parent.id}}/{{which}}"> Back </a>
+        {% endif %}
+    </div>
+    <div class="title">
+        {% if posttype == "event_post" %}
+        <a href="/create_event_comment/events/{{ posttype }}/{{ parent[0].id }}/{{ which }}" class="post_form" style="bottom: 10px;"> Make a New Comment </a>
+        {% else %}
+        <a href="/create_event_comment/event_comments/{{ posttype }}/{{ parent[0].id }}/{{ which }}" class="post_form" style="bottom: 10px;"> Make a New Comment </a>
+        {% endif %}
+    </div>
+
+<!-- ! Parent Post -->
+<div class="new_post">
+    <div class="new_top">
+        <a class="like_count"> {{ parent[0].likes|length}} </a>
+        <a href="{{ '/profile/{0}'.format(parent[0].user.name) }}" class="name">{{ parent[0].user.name }}</a>
+        {% if session["user"] == parent[0].user.name %}
+        <a class="delete" href="/event_delete/events/None/None/event_post/{{ parent[0].id }}">
+            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+        </a>
+        {% elif user.admin == 1 %}
+        <a class="delete" href="/event_delete/events/None/None/event_post/{{ parent[0].id }}">
+            <img src="{{ url_for('static', filename='assets/x1.png') }}">
+        </a>
+        {% endif %}      
+    </div>
+    <div>
+      <div class="new_inner">
+        {% if parent[1] %}
+            <div>
+                <img src="/static/uploads/event_posts/{{ parent[0].id|string + parent[1] }}" class="photo">
+            </div>        
+        {% endif %}
+
+        <div class="text">
+            <p>
+                {{ parent[0].text }}
+            </p>
+        </div>
+        <div class="new_bottom">
+            <a href="/event_like/events/None/None/event_post/{{ which }}/{{ parent[0].id }}" class="like_link">
+                {% if user in parent[0].likes %}
+                    Unlike
+                {% else %}
+                    Like
+                {% endif %}
+            </a>
+            <a href="/event_comments/events/event_post/{{ parent[0].id }}/{{which}}" class="comment_link">Comments({{parent[0].event_comments|length}})</a>
+
+            <a class="date"> {{ parent[0].time_created.strftime("%X") }} </a>
+        </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ! Parent Post -->
+
+<h1 class="title">Comments</h1>
+
+<div class="comments">
+    
+    <!-- ? Branch stretches all comments --> 
+    <div class="large_branch"> </div>
+    <!-- ? Branch stretches all comments -->
+    
+    {% for comment in comments %}
+
+        <div class="primary_comment">
+            <!-- ! Template Comment -->
+            <div class="collapsable_comment">
+                <!-- * Top of comment -->
+                <label class="comment_top">
+                    {% if comment[1][0] != "None" %}
+                        <div class="triangle" onclick="collapse(this)"></div>
+                    {% endif %}
+                    <a class="comment_like_count">  {{ comment[0].likes|length }} </a>
+                    <a href="/profile/{{ comment[0].user.name }}" class="comment_name">  {{ comment[0].user.name }} </a>
+                    {% if session["user"] == comment[0].user.name or user.admin == 1 %}
+                    <a class="delete" href="/event_delete/event_comments/{{parent[0].id}}/{{posttype}}/event_comment/{{comment[0].id}}">
+                        <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                    </a>       
+                    {% endif %}
+                </label>
+                <!-- * Top of comment -->
+            
+                <!-- * Bottom of comment -->
+                <div class="comment_drop_box">
+                <div class="comment_content_inner">
+                    <!-- * Inner -->
+                    <div class="comment_text">
+                        <p style="margin:0px;"> {{ comment[0].text }} </p>
+                    </div>
+                    <!-- * Inner -->
+            
+                    <!-- * Bottom-->
+                    <div class="comment_bot">
+                        
+                        {% if posttype == "event_post" %}
+                            <a href="/event_like/event_comments/{{parent[0].id}}/event_post/event_comment/None/{{comment[0].id}}" class="comment_like_button">
+                                {% if user in comment[0].likes %}
+                                    Unlike
+                                {% else %}
+                                    Like
+                                {% endif %}
+                            </a>
+                            {% elif posttype == "event_comment" %}
+                            <a href="/event_like/event_comments/{{parent[0].id}}/event_comment/event_comment/None/{{comment[0].id}}" class="comment_like_button">
+                                {% if user in comment[0].likes %}
+                                    Unlike
+                                {% else %}
+                                    Like
+                                {% endif %}
+                            </a>
+                            {% endif %}
+                            <a href="/event_comments/None/event_comment/{{ comment[0].id }}/{{which}}" class="comment_comment_button">Comments({{ comment[0].children_comments.all()|length }})</a>
+                            <a class="comment_time_stamp"> {{ comment[0].time_created.strftime("%X") }} </a>
+                        </div>
+                        <!-- * Bottom-->
+                    </div>
+                </div>
+                <!-- * Bottom of comment -->
+            </div>
+            <!-- ! Template Comment -->
+        
+            <div class="comments_2 content" style="display:block;">
+
+                <!-- ? Branch stretches all sub-comments -->
+                <div class="med_branch"></div>
+                <!-- ? Branch stretches all sub-comments -->
+
+
+                <!-- * Secondary Comment 1 -->
+                {% if comment[1][0] != "None" %}
+
+                    <div class="secondary_comment">
+                        <!-- ! Template Comment -->
+                        
+                        <div class="collapsable_comment">
+                        
+                            <!-- * top of comment -->
+                            <label class="comment_top">
+                                {% if comment[1][1] != "None" %}
+                                    <div class="triangle" onclick="collapse(this)"></div>
+                                {% endif %}
+                                <a class="comment_like_count">  {{ comment[1][0].likes|length }} </a>
+                                <a href="/profile/{{ comment[1][0].user.name }}" class="comment_name">  {{ comment[1][0].user.name }} </a>
+                                {% if session["user"] == comment[1][0].user.name or user.admin == 1%}
+                                <a class="delete" href="/event_delete/event_comments/{{parent[0].id}}/{{posttype}}/event_comment/{{comment[1][0].id}}">
+                                    <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                                </a>     
+                                {% endif %}
+                            </label>
+                            <!-- * top of comment-->
+                            
+                            <!-- * Bottom of comment -->
+                            <div class="comment_drop_box">
+                                <div class="comment_content_inner">
+                                    <!-- * Inner -->
+                                    <div class="comment_text">
+                                        <p style="margin:0px;"> {{ comment[1][0].text }} </p>
+                                    </div>
+                                    <!-- * Inner -->
+                                    
+                                    <!-- * Bottom -->
+                                    <div class="comment_bot">                                    
+                                        {% if posttype == "event_post" %}
+                                            <a href="/event_like/event_comments/{{parent[0].id}}/event_post/event_comment/None/{{comment[1][0].id}}" class="comment_like_button">
+                                                {% if user in comment[1][0].likes %}
+                                                    Unlike
+                                                {% else %}
+                                                    Like
+                                                {% endif %}
+                                            </a>
+                                        {% elif posttype == "event_comment" %}
+                                            <a href="/event_like/event_comments/{{parent[0].id}}/event_comment/event_comment/None/{{comment[1][0].id}}" class="comment_like_button">
+                                                {% if user in comment[1][0].likes %}
+                                                    Unlike
+                                                {% else %}
+                                                    Like
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
+                                        <a href="/event_comments/None/event_comment/{{ comment[1][0].id }}/{{which}}" class="comment_comment_button">Comments({{ comment[1][0].children_comments.all()|length }})</a>
+
+                                        <p class="comment_time_stamp"> {{ comment[1][0].time_created.strftime("%X") }} </p>
+                                    </div>
+                                    <!-- * Bottom-->
+                                </div>
+                            </div>
+                            <!-- * Bottom of comment -->
+                        </div>
+                        <!-- ! Template Comment --> 
+
+                        {% if comment[1][1] != "None" %}
+
+                        <div class="tertiary_comment">  
+                            
+                            <!-- * Branch stretches a single comment -->
+                            <div class="small_branch"></div>
+                            <!-- * Branch stretches a single comment -->
+                            
+                            <!-- ! Template Comment -->       
+                            <div class="comment">
+                                <!-- * Top of comment -->
+                                <label class="comment_top">
+                                    <a class="comment_like_count">  {{ comment[1][1].likes|length }} </a>
+                                    <a href="/profile/{{ comment[1][1].user.name }}" class="comment_name">  {{ comment[1][1].user.name }} </a>
+                                    {% if session["user"] == comment[1][1].user.name or user.admin == 1 %}
+                                    <a class="delete" href="/event_delete/event_comments/{{parent[0].id}}/{{posttype}}/event_comment/{{comment[1][1].id}}">
+                                        <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                                    </a>
+                                    {% endif %}    
+                                </label>
+                                <!-- * Top of comment -->
+                            
+                                <!-- * Bottom of comment -->
+                                <div class="comment_drop_box">
+                                <div class="comment_content_inner">
+                                    <!-- * Inner -->
+                                    <div class="comment_text">
+                                        <p style="margin:0px;"> {{ comment[1][1].text }} </p>
+                                    </div>
+                                    <!-- * Inner -->
+                                    <!-- * Bottom -->
+                                    <div class="comment_bot">                                        
+                                        {% if posttype == "event_post" %}
+                                            <a href="/event_like/event_comments/{{parent[0].id}}/event_post/event_comment/None/{{comment[1][1].id}}" class="comment_like_button">
+                                                {% if user in comment[1][1].likes %}
+                                                    Unlike
+                                                {% else %}
+                                                    Like
+                                                {% endif %}
+                                            </a>
+                                        {% elif posttype == "event_comment" %}
+                                            <a href="/event_like/event_comments/{{parent[0].id}}/event_comment/event_comment/None/{{comment[1][1].id}}" class="comment_like_button">
+                                                {% if user in comment[1][1].likes %}
+                                                    Unlike
+                                                {% else %}
+                                                    Like
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
+                                        <a href="/event_comments/None/event_comment/{{ comment[1][1].id }}/{{which}}" class="comment_comment_button">Comments({{ comment[1][1].children_comments.all()|length }})</a>
+                                        <a class="comment_time_stamp"> {{ comment[1][1].time_created.strftime("%X") }} </a>
+                                    </div>
+                                        <!-- * Bottom -->
+                                    </div>
+                                </div>
+                                <!-- * Bottom of comment -->
+                            </div>
+                            <!-- ! Template Comment -->
+                        </div>
+
+                        {% endif %}
+                    
+                    </div>
+
+                {% endif %}
+                <!-- * Secoondary Comment 1 -->
+                
+
+
+
+                <!-- * Secondary Comment 2 -->
+                {% if comment[2][0] != "None" %}
+
+                    <div class="secondary_comment">
+                        
+                        <!-- ! Template Comment -->
+                        <div class="collapsable_comment" >
+
+                            <!-- * Top of comment -->
+                            <label class="comment_top">
+                                {% if comment[2][1] != "None" %}
+                                    <div class="triangle" onclick="collapse(this)"></div>
+                                {% endif %}
+                                <a class="comment_like_count">  {{ comment[2][0].likes|length }} </a>
+                                <a href="/profile/{{ parent[0].user.name }}" class="comment_name">  {{ comment[2][0].user.name }} </a>
+                                {% if session["user"] == comment[2][0].user.name or user.admin == 1 %}
+                                <a class="delete" href="/event_delete/event_comments/{{parent[0].id}}/{{posttype}}/event_comment/{{comment[2][0].id}}">
+                                    <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                                </a>
+                                {% endif %}
+                            </label>
+                            <!-- * Top of comment -->
+                        
+                            <!-- * Bottom of comment -->
+                            <div class="comment_drop_box">
+                            <div class="comment_content_inner">
+                                <!-- * Inner -->
+                                <div class="comment_text">
+                                    <p style="margin:0px;"> {{ comment[2][0].text }} </p>
+                                </div>
+                                <!-- * Inner -->
+                                <!-- * Bottom -->
+                                <div class="comment_bot">
+                                    <a href="/event_comments/None/event_comment/{{ comment[2][0].id }}/{{which}}" class="comment_comment_button">Comments({{ comment[2][0].children_comments.all()|length }})</a>
+                                    
+                                    {% if posttype == "event_post" %}
+                                        <a href="/event_like/event_comments/{{parent[0].id}}/event_post/event_comment/None/{{comment[2][0].id}}" class="comment_like_button">
+                                            {% if user in comment[2][0].likes %}
+                                                Unlike
+                                            {% else %}
+                                                Like
+                                            {% endif %}
+                                        </a>
+                                    {% elif posttype == "event_comment" %}
+                                        <a href="/event_like/event_comments/{{parent[0].id}}/event_comment/event_comment/None/{{comment[2][0].id}}" class="comment_like_button">
+                                            {% if user in comment[2][0].likes %}
+                                                Unlike
+                                            {% else %}
+                                                Like
+                                            {% endif %}
+                                        </a>
+                                    {% endif %}
+                                    <a class="comment_time_stamp"> {{ comment[2][0].time_created.strftime("%X") }} </a>
+                                </div>
+                                <!-- * Bottom -->
+                                </div>
+                            </div>
+                            <!-- * Bottom of comment -->
+                        </div>
+                        <!-- ! Template Comment -->
+                    
+                        {% if comment[2][1] != "None" %}
+
+                        <div class="tertiary_comment">
+
+                            <!-- * Branch stretches a single comment -->
+                            <div class="small_branch"></div>
+                            <!-- * Branch stretches a single comment -->
+
+                            <!-- ! Template Comment --> 
+                            <div class="comment" >
+                                <!-- * Top of comment -->
+                                <label class="comment_top">
+                                    <a class="comment_like_count">  {{ comment[2][1].likes|length }} </a>
+                                    <a href="/profile/{{ parent.user.name }}" class="comment_name">  {{ comment[2][1].user.name }} </a>
+                                    {% if session["user"] == comment[2][1].user.name or user.admin == 1 %}
+                                    <a class="delete" href="/event_delete/event_comments/{{parent[0].id}}/{{posttype}}/event_comment/{{comment[2][1].id}}">
+                                        <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                                    </a>     
+                                    {% endif %}
+                                </label>
+                                <!-- * Top of comment -->
+                            
+                                <!-- * Bottom of comment -->
+                                <div class="comment_drop_box">
+                                <div class="comment_content_inner">
+                                    <!-- * Inner -->
+                                    <div class="comment_text">
+                                        <p style="margin:0px;"> {{ comment[2][1].text }} </p>
+                                    </div>
+                                    <!-- * Inner -->
+                            
+                                    <!-- * Bottom -->
+                                    <div class="comment_bot">                                        
+                                        {% if posttype == "event_post" %}
+                                            <a href="/event_like/event_comments/{{parent[0].id}}/event_post/event_comment/None/{{comment[2][1].id}}" class="comment_like_button">
+                                                {% if user in comment[2][1].likes %}
+                                                    Unlike
+                                                {% else %}
+                                                    Like
+                                                {% endif %}
+                                            </a>
+                                        {% elif posttype == "event_comment" %}
+                                            <a href="/event_like/event_comments/{{parent[0].id}}/event_comment/event_comment/None/{{comment[2][1].id}}" class="comment_like_button">
+                                                {% if user in comment[2][1].likes %}
+                                                    Unlike
+                                                {% else %}
+                                                    Like
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
+                                        <a href="/event_comments/None/event_comment/{{ comment[2][1].id }}/{{which}}" class="comment_comment_button">Comments({{ comment[2][1].children_comments.all()|length }})</a>
+
+                                        <a class="comment_time_stamp"> {{ comment[2][1].time_created.strftime("%X") }} </a>
+                                    </div>
+                                    <!-- * Bottom-->
+                                    </div>
+                                </div>
+                                <!-- * Bottom of comment -->
+                            </div>
+                            <!-- ! Template Comment --> 
+                        </div>	
+                        {% endif %}
+                    </div>
+
+                {% endif %}
+                <!-- * Secondary Comment 2 -->
+            
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}
+    

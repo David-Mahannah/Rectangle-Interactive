@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='posts.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='profile_mobile.css') }}" />
+
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+{% endblock %}
+
+{% block body %}
+	<div class="name_panel">
+		<div class="title_bar">
+            {% if extension != None%}
+            <div class="logo">
+                <img class="profile-picture" src="/static/uploads/profile_pictures/{{ user.name + 'pp' + extension }}" alt="Rectangle Logo">
+            </div>      
+            {% else %}
+            <div class="logo">
+                <img class="profile-picture" src="/static/uploads/profile_pictures/defaultpp.png" alt="Rectangle Logo">
+            </div>
+           
+            {% endif %}   
+            <h1 class="pname"> {{ user.name }} </h1>
+            <p class="user_since"> {{ user.title }} </p>
+        </div>
+        
+        <div class="bio">
+	<div class="separator">Bio</div>
+            <div class=bio_top>
+            <div class="bio_contents">
+                <p> {{ user.bio }} </p>
+            </div>
+        </div>
+        </div>
+        <div class="ftab">
+            {% if session["user"] != user.name %}
+                {% if _cu in user.followers %}
+                    <a class="follow_button" href="/follow/{{ user.name }}"> Unfollow</a>
+                {% else %}
+                    <a class="follow_button" href="/follow/{{ user.name }}"> Follow</a>
+                {% endif %}
+                <a class="share_link" href="/share/{{ user.name }}"> Share </a>
+            {% else %}
+                <a class="following_button" href="/following"> Following </a>
+                <a class="followers_button" href="/followers"> Followers </a>
+                <a class="share_link_me" href="/share/{{ user.name }}"> <i class="fa fa-qrcode"></i> Share </a>
+            {% endif %} 
+        </div>
+
+        {% if session["user"] == user.name %}
+        <div class="separator">Level</div>
+        <div class="mid">
+            <div class="level_info_block">
+                <div class="level_circle">
+                    <span class="level">{{ user.level }}</span>
+                </div>
+                <div>
+                    <div class="progress_bar">
+                        <span class="level_info"> Total Likes: {{ user.like_count }} (next level at {{ user.like_goal }})</span>
+                        <div class="bar" id="bar"></div>
+                    </div>
+                    <span class="rank"> Rank: {{ rank }} </span>
+                </div>
+            </div>
+        </div>
+        <div class="separator">Coins</div>
+    
+        <div class="mid">
+            <div class="level_info_block">
+                <div class="level_circle_coin">
+                    <a href="/addcoins"><img src="/static/uploads/resources/coin.png" class="coin"></a>
+                </div>
+                <div>
+                    <div class="progress_bar">
+                        <span class="level_info_coin"> Post Streak: {{user.post_streak }}  (daily coins:  {{ 1 + user.post_streak}})</span>
+                        <div class="coin_bar" id="coin_bar"></div>
+                    </div>
+                    <span class="rank">Coins: {{ user.coins }}              </span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="bot">    
+            <a class="edit_profile" href='/editprofile'>Edit bio</a>
+            <a class="notification_button" href='/notifications/None/None'>
+                <span>Notifications</span>
+                {% if user.notifications|length != 0%}
+                <span class="badge">{{ user.notifications|length }}</span>
+                {% endif %}
+            </a>
+            <a class="logout_button" href='/logout'>Logout</a class="logout_button"></a>
+        </div>
+        {% endif %}
+	</div>
+	<div class="title">
+		<h1 style="margin-left: 15px;">Posts</h1>
+	</div>
+	<div class="grid_posts">
+        {% for post in posts %}
+        <div class="new_post_feed">
+            <div class="new_top">
+                <a class="like_count"> {{ post[0].like_count}} </a>
+                <a href="{{ '/profile/{0}'.format(post[0].user.name) }}" class="name">{{ post[0].user.name }}</a>
+                <a class="delete" href="/delete/feed/None/None/post/{{ post[0].id }}">
+                    <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                </a>      
+            </div>
+            <div>
+              <div class="new_inner">
+                {% if post[1] %}
+                <div class="image_cropper">
+                    <img src="/static/uploads/posts/{{ post[0].id|string + post[1] }}" class="photo">
+                </div>        
+                {% endif %}
+                  <div class="spacer"></div>
+                  <div class="text">
+                    <p>
+                        {{ post[0].text }}
+                    </p>
+                </div>
+                <div class="new_bottom">
+                    <a href="/like/feed/None/None/post/{{ which }}/{{ post[0].id }}" class="like_link">
+                        {% if _cu in post[0].likes %}
+                            Unlike
+                        {% else %}
+                            Like
+                        {% endif %}
+                    </a>
+                    <a href="/comments/feed/post/{{ post[0].id }}/{{which}}" class="comment_link">Comments({{post[0].comments|length}})</a>
+
+                    <a class="date"> {{ post[0].time_created.strftime("%X") }} </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        <script>
+            var elem = document.getElementById("bar");   
+            elem.style.width = "{{progress}}" + '%'; 
+            var elem2 = document.getElementById("coin_bar");   
+            elem2.style.width = "{{streak_progress}}" + '%'; 
+        </script>
+{% endblock %}

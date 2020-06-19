@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='comments.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='feed.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='posts.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 481px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 481px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='comments_mobile.css') }}"/>
+<title> Rectangle </title>
+{% endblock %}
+
+{% block body %}
+<body>
+    <script src="/static/js/test.js"></script>
+    <div class="back">
+        {% if posttype == "post" %}
+	<a href="/feed/0/{{which}}"> Back </a>
+        {% elif posttype == "comment" %}
+	<a href="/comments/comments/{{ parent_of_parent_type }}/{{ parent_of_parent.id }}/{{which}}"> Back </a>
+        {% endif %}
+    </div>
+    <div class="title">
+        {% if posttype == "post" %}
+        <a href="/createcomment/feed/{{ posttype }}/{{ parent.id }}/{{ which }}" class="post_form" style="bottom: 10px;"> Make a New Comment </a>
+        {% else %}
+        <a href="/createcomment/comments/{{ posttype }}/{{ parent.id }}/{{ which }}" class="post_form" style="bottom: 10px;"> Make a New Comment </a>
+        {% endif %}
+    </div>
+
+
+    {% if posttype == "post" %}
+    <div class="new_post_comments">
+        <div class="new_top">
+            <a class="like_count"> {{ parent.likes|length}} </a>
+            <a href="{{ '/profile/{0}'.format(parent.user.name) }}" class="name">{{ parent.user.name }}</a>
+            <a class="delete" href="/delete/feed/None/None/post/{{ parent.id }}">
+                <img src="{{ url_for('static', filename='assets/x1.png') }}">
+            </a>      
+        </div>
+        <div>
+          <div class="new_inner">
+              <div class="text">
+                <p>
+                    {{ parent.text }}
+                </p>
+            </div>
+            <div class="new_bottom">
+                <a href="/comments/feed/post/{{ parent.id }}/{{which}}" class="comment_link">comments({{parent.comments|length}})</a>
+                <a href="/like/feed/None/None/post/{{ which }}/{{ parent.id }}" class="like_link">
+                    {% if user in parent.likes %}
+                        unlike
+                    {% else %}
+                        like
+                    {% endif %}
+                </a>
+                <p class="date"> {{ parent.time_created.strftime("%X") }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="comments">
+        <div class="large_branch"> </div>
+        {% for comment in comments %}
+            <div class="primary_comment">
+                {% block collapsable_primary_comment %}
+                {% endblock %}
+            <div class="comments_ content">
+            <div class="med_branch"></div>
+            
+            {% if comment[1][0] != "None" %}
+            <div class="stem"></div>
+            <div class="secondary_comment"> 
+                {% block collapsable_secondary_comment_1 %}
+                {% endblock %}
+                {% if comment[1][1] != "None" %}
+                <div class="small_branch"></div>
+                <div class="stem"></div>
+            </div>
+                <div class="tertiary_comment">          
+                    {% block tertiary_comment %}
+                    {% endblock %}
+                </div>		
+                {% endif %}
+            {% endif %}
+            
+            {% if comment[2][0] != "None" %}
+                <div class="secondary_comment">
+
+                    {% block collapsable_secondary_comment_2 %}
+                    {% endblock %}
+                
+                </div>
+
+                    {% if comment[2][1] != "None" %}
+                        <div class="tertiary_comment">             
+                            {% block tertiary_comment_2 %}
+                            {% endblock %}
+                        </div>	
+                    {% endif %}
+            {% endif %}
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+        
+
+
+
+
+
+
+    {% elif posttype == "comment" %}
+    <div class="new_post_comments">
+            <div class="new_top">
+                <a class="like_count"> {{ parent.likes|length }} </a>
+                <a href="{{ '/profile/{0}'.format(parent.user.name) }}" class="name"> {{ parent.user.name }} </a>
+                {% if session["user"] == parent.user.name %}
+                <a class="delete" href="/delete/comments/{{parent.id}}/{{posttype}}/comment/{{ parent.id }}">
+                    <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                </a>   
+                {% endif %}   
+            </div>
+            <div>
+            <div class="new_inner">
+                <div class="text">
+                    <p>
+                        {{ parent.text }}
+                    </p>
+                </div>
+                <div class="new_bottom">
+                    <a href="/comments/feed/post/{{ parent.id }}/{{which}}" class="comment_link">comments({{parent.comments|length}})</a>
+                    <a href="/like/feed/None/None/post/{{ which }}/{{ parent.id }}" class="like_link">
+                        {% if user in parent.likes %}
+                            unlike
+                        {% else %}
+                            like
+                        {% endif %}
+                    </a>
+                    <p class="date"> {{ parent.time_created.strftime("%X") }} </p>
+                </div>
+            </div>
+            </div>
+    </div>
+    
+    <div class="comments">
+        <div class="large_branch"> </div>
+        {% for comment in comments %}
+            <div class="primary_comment">
+                {% block collapsable_primary_comment %}
+                {% endblock %}
+            <div class="comments_">
+            <div class="med_branch"></div>
+            {% if comment[1][0] != "None" %}
+            <div class="stem"></div>
+            <div class="secondary_comment"> 
+                
+
+                {% if comment[1][1] != "None" %}
+                <div class="small_branch"></div>
+                <div class="stem"></div>
+                <div class="tertiary_comment">          
+                    {% block tertiary_comment_1 %}
+                    {% endblock %}
+                </div>
+                    </div>
+                </div>		
+            {% endif %}
+            </div>
+            {% endif %}
+            {% if comment[2][0] != "None" %}
+                <div class="secondary_comment">
+                    {% block collapsable_secondary_comment_2 %}
+                    {% endblock%}
+                    </div>
+
+                    {% if comment[2][1] != "None" %}
+                        <div class="tertiary_comment">
+                            {% block tertiary_comment_2 %}
+                            {% endblock %}             
+                            </div>
+                        </div>	
+                    {% endif %}
+                    </div>
+            {% endif %}
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+{% endblock %}

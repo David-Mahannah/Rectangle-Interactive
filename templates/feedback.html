@@ -1,0 +1,31 @@
+{% extends "base.html"%}
+
+{% block head %}
+<title> Create Post </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='create_post.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='create_post_mobile.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div class="prompt">
+        {% if base_or_event == "base" %}
+        <form action='/create_post' method='POST'>
+        {% else %}
+        <form action='/feedback' method='POST'>
+        {% endif %}
+            <label for="fname" class="labels">Submit Feedback or Requests</label>
+            <div class="prompt_text">
+                <br>
+                <textarea type="text" rows = "7" name='text' id='text'></textarea>
+            </div>
+            <input type="file" name="file" class="file" id="file">
+            <input type='submit' value='Submit'>
+            
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+            
+        </form>
+    </div>
+{% endblock %}
+

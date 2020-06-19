@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Search </title>
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='edit_titles_mobile.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+
+{% endblock %}
+
+{% block body %}
+<div>
+    <a class="back" href="/moderator">Back</a>
+</div>
+<div class="events">
+    {% for f in feedback %}
+    <div class="big">
+        <div class="cost_">
+            <a class="ccost"> {{ f.text }} </a>
+        </div>
+        <div class="delete">
+            <a>Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

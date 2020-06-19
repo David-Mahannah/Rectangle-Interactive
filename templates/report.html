@@ -1,0 +1,31 @@
+{% extends "base.html"%}
+
+{% block head %}
+<title> Create Post </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='create_post.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='create_post_mobile.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div class="prompt">
+        <form action='/report/{{ user.name }}' method='POST' enctype=multipart/form-data>
+            <label for="fname" class="labels"> Before you report {{ user.name }}...</label>
+            <br>
+            <br>
+            <br>
+            <label for="fname" class="labels">Please add justification.</label>
+            <div class="prompt_text">
+                <br>
+                <textarea type="text" rows = "7" name='text' id='text'></textarea>
+            </div>
+            <input type="file" name="file" class="file" id="file">
+            <input type='submit' value='Post'>
+            
+            {% if error %}
+            <p class="error"><strong>{{ error }}</strong></p>
+            {% endif %}
+            
+        </form>
+    </div>
+{% endblock %}
+

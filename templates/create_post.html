@@ -1,0 +1,40 @@
+{% extends "base.html"%}
+
+{% block head %}
+<title> Create Post </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='create_post.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='create_post_mobile.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div class="prompt">
+        {% if base_or_event == "base" %}
+        <form action='/create_post' method='POST' enctype=multipart/form-data>
+        {% else %}
+        <form action='/create_event_post' method='POST' enctype=multipart/form-data>
+        {% endif %}
+            <label for="fname" class="labels">Create Post</label>
+            <br>
+            <br>
+            <div class="prompt_text">
+                <br>
+                <textarea type="text" rows = "7" name='text' id='text'></textarea>
+            </div>
+            
+            <br>
+            <label for="file" class="custom-file-upload">
+                 <i class="fa fa-cloud-upload"></i> Upload Photo
+            </label>
+            <input id="file" type="file" name="file"/>
+            
+
+            <input type='submit' value='Post'>
+            
+            {% if error %}
+            <p class="error"><strong>{{ error }}</strong></p>
+            {% endif %}
+            
+        </form>
+    </div>
+{% endblock %}
+

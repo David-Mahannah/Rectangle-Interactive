@@ -1,0 +1,141 @@
+
+@font-face {
+    font-family: Computer Font;
+    src: url(Computerfont.ttf);
+}
+
+
+@font-face {
+    font-family: KA;
+    src: url(ka1.ttf);
+}
+
+
+.popup {
+  font-size: 50px;
+  z-index: 3;
+  position: fixed;
+  bottom: 30px;
+  right: 0px;
+  background-image: linear-gradient(to right, #282c2b , #353a38);
+  padding: 15px 15px;
+  border-radius: 32px 0px 0px 32px;
+  width: 80%;
+}
+
+
+head {
+    font-family: 'Lucida Console', 'Courier New', monospace;
+    background-color: black; 
+    color: white;
+}
+
+body {
+  font-family: 'Lucida Console', monospace;
+    background-color: black; 
+    color: white;
+    margin: 0px;
+}
+
+.navbar {
+    z-index: 3;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    background-image: linear-gradient(to right, #ee5f12 , #ff6511);
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    box-shadow: 10px 10px 25px black;
+  }
+  
+  .navbar a {
+    display: flex;
+    float: left;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    padding: 45px 55px;
+    text-decoration: none;
+  }
+  
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 45px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 45px 60px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-image: linear-gradient(to right, #ee5f12 , #ff6511);
+    min-width: 35.5%;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: white;
+    padding: 24px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #d85813;
+  }
+  
+  #hideMe {
+    text-align: center;
+    border: 2px solid rgb(110, 98, 98);
+    overflow: hidden;
+    white-space:nowrap;
+    min-height: 100px;
+    max-height: 100px;
+    -moz-animation: cssAnimation 0.5s ease-in 1s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0.5s ease-in 1s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0.5s ease-in 1s forwards;
+    /* Opera */
+    animation: cssAnimation 0.5s ease-in 1s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    
+    
+}
+
+@keyframes cssAnimation2 {
+  to {
+    display: fixed;
+  }
+}
+
+
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}

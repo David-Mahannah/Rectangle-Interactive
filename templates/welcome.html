@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.mySlides {display:none;}
+
+.button_left {
+    position: absolute;
+    bottom: 30px;
+    left: 15px;
+    font-size: 20px;
+    border-radius: 8px;
+    background-color: #ff6511;
+    padding: 5px 50px;
+    box-shadow: black 5px 5px 5px;
+    color: white;
+}
+.button_right {
+    position: absolute;
+    bottom: 30px;
+    right: 15px;
+    font-size: 20px;
+    border-radius: 8px;
+    background-color: #ff6511;
+    padding: 5px 40px;
+    box-shadow: black 5px 5px 5px;
+    color: white;
+}
+
+body {
+    margin: 0px;
+    background-color: black;
+}
+
+
+.wecome {
+    margin-top: 180px;
+    color: white;
+    text-align: center;
+}
+
+.wecomeh3 {
+    color: white;
+    text-align: center;
+}
+
+.wecomeh4 {
+    color: white;
+    text-align:left;
+    margin-left: 45px;
+}
+
+
+.slide2 {
+    color: white;
+    position: absolute;
+    top: 200px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px 15px;
+    
+    border-radius: 16px;
+    border-width: 2px;
+    border: solid #ff6511;
+}
+
+.slide3 {
+    color: white;
+    position: absolute;
+    top: 350px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px 15px;
+    
+    border-radius: 16px;
+    border-width: 2px;
+    border: solid #ff6511;
+}
+
+</style>
+<body>
+
+  <div class="slides">
+    <div class="mySlides" id="bruh">
+      <h1 class="wecome">Welcome to Rectangle!</h1>
+      <h3 class="wecomeh3"> Before you begin. . .</h3>
+      <h3 class="wecomeh3"> Check out the features we have to offer.</h3>
+      <button class="button_right" onclick="plusDivs(1)">Continue &#10095;</button>
+    </div>
+    <div class="mySlides">
+        <img class="img1" src="static/assets/IMG-1115.jpg" style="width:100%">
+        <h3 class="slide2"> This is the feed. Post anything you want here, but beware, everything you post is deleted by midnight.</h3>
+        <button class="button_left" onclick="plusDivs(-1)">&#10094 Back</button>
+        <button class="button_right" onclick="plusDivs(1)">Continue &#10095;</button>
+        
+    </div>
+    <div class="mySlides">
+        <img class="img1" src="static/assets/IMG-1116.jpg" style="width:100%">
+        <h3 class="slide2">You can find daily events in the dropdown above. Events have a specific prompt that changes daily. Liking an event post costs coins and will reward the posts owner with your coins!</h3>
+        <button class="button_left" onclick="plusDivs(-1)">&#10094 Back</button>
+        <button class="button_right" onclick="plusDivs(1)">Continue &#10095;</button>
+    </div>
+    <div class="mySlides">
+        <img class="img1" src="static/assets/IMG-1117.jpg" style="width:100%">
+        <h3 class="slide3">Reach the leader board during a event and you'll be rewarded with additional coins!</h3>
+        <button class="button_left" onclick="plusDivs(-1)">&#10094 Back</button>
+        <button class="button_right" onclick="plusDivs(1)">Continue &#10095;</button>
+    </div>
+    <div class="mySlides" id="bruh">
+        <h1 class="wecome">Finally,</h1>
+        <h3 class="wecomeh4"> Thank you for you participation </h3>
+        <h3 class="wecomeh4"> Just doin' it like it be, </h3>
+        <h3 class="wecomeh4"> David </h3>
+        <button class="button_left" onclick="plusDivs(-1)">&#10094 Back</button>
+        <button class="button_right" onclick="location.href= '/feed/0/Top' ">Continue &#10095;</button>
+      </div>
+
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='feed.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='posts.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='posts_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='feed_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='pagination_mobile.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pagination.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/resources/icon.jpg">
+{% endblock %}
+
+{% block body %}
+<body>
+    
+    
+    {% if user.accepted_coins == 0 %}
+    
+    <div id="myModal" class="modal" onload="makeVisible()">
+        <!-- Modal content -->
+        <div class="modal-content" >
+            <span class="close">&times;</span>
+            <h1 class="modal-title"> Welcome back! </h1>
+            <br>      
+            <br>
+            <h4 class="modal-text"> Collect your daily coins:  </h4>
+                <a href="/addcoins"><img src="/static/uploads/resources/coin.png" class="coin"></a>
+            </div>   
+        </div>
+    </div>
+      
+    
+    {% endif %}
+    <div>
+        <div class="title">
+            <a href="/create_post" class="post_form"> Make a new post </a>
+            <h1>Today's Posts</h1>
+        </div>
+        <div>
+	{% if which == "New" %}
+	<ul class="filters">
+		<li class="filters_item"><a href="/feed/0/Top">Top Posts</a></li>
+        <li class="selected_filters_item"><a href="/feed/0/New">New Posts</a></li>
+        <li class="filters_item"><a href="/feed/0/Following">Following</a></li>
+	<ul>
+	{% elif which == "Top" %}
+	<ul class="filters">
+		<li class="selected_filters_item"><a href="/feed/0/Top">Top Posts</a></li>
+        <li class="filters_item"><a href="/feed/0/New">New Posts</a></li>
+        <li class="filters_item"><a href="/feed/0/Following">Following</a></li>
+    </ul>
+    {% elif which == "Following" %}
+	<ul class="filters">
+        <li class="filters_item"><a href="/feed/0/Top">Top Posts</a></li>
+        <li class="filters_item"><a href="/feed/0/New">New Posts</a></li>
+        <li class="selected_filters_item"><a href="/feed/0/Following">Following</a></li>
+    </ul>
+	{% endif %}
+    </div>
+
+        <div class="grid_posts">
+        {% if not (posts == "none") %}
+        {% for post in posts %}
+        <div class="new_post_feed">
+            <div class="new_top">
+                <a class="like_count"> {{ post[0].like_count}} </a>
+                <a href="{{ '/profile/{0}'.format(post[0].user.name) }}" class="name">{{ post[0].user.name }}</a>
+                
+                {% if user == post[0].user %}
+                <a class="delete" href="/post_delete/feed/None/None/post/{{ post[0].id }}">
+                    <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                </a>      
+                {% elif user.admin == 1 %}
+                <a class="delete" href="/post_delete/feed/None/None/post/{{ post[0].id }}">
+                    <img src="{{ url_for('static', filename='assets/x1.png') }}">
+                </a>  
+                {% endif %}
+            </div>
+            <div>
+              <div class="new_inner">
+                {% if post[1] %}
+                <div class="image_cropper">
+                    <img src="/static/uploads/posts/{{ post[0].id|string + post[1] }}" class="photo">
+                </div>        
+                {% endif %}
+                <div class="spacer"></div>
+                <div class="text">
+                    <p>
+                        {{ post[0].text }}
+                    </p>
+                </div>
+                <div class="new_bottom">
+                        <a href="/like/feed/None/None/post/{{ which }}/{{ post[0].id }}" class="like_link">
+                        {% if user in post[0].likes %}Unlike{% else %}Like{% endif %}
+                    </a>
+		    <a href="/comments/feed/post/{{ post[0].id }}/{{which}}" class="comment_link">Comments({{post[0].comments|length}})</a>
+
+                    <a class="date"> {{ post[0].time_created.strftime("%X") }} </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+    </div >
+    
+    {% if (not (posts == "none")) and (max != 1)%}
+        <div class="center">
+            <div class="pagination">
+                {% if max < 6 %}
+                    {% if not (page == 0) %}
+                        <a href="/feed/{{ page - 1}}/{{which}}">&laquo;</a>
+                    {% endif %}
+                    
+                    {% for i in range(max) %}
+                        {% if i == page %}
+                            <a href="/feed/{{i}}/{{which}}" class="active">{{(i)+1}}</a>
+                        {% else %}
+                            <a href="/feed/{{i}}/{{which}}">{{(i)+1}}</a>
+                        {% endif %}
+                    {% endfor%}
+        
+                    {% if not (page == max - 1) %}
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+                    {% endif %}
+
+                {% else %} 
+                    {% if page == ( max - 1 ) %}
+                        <!--1-->
+                        <a href="/feed/{{ page - 1}}/{{which}}">&laquo;</a>
+                        <a href="/feed/{{ page - 5 }}/{{which}}"> {{ (page - 5)+1 }}</a>
+                        <a href="/feed/{{ page - 4 }}/{{which}}"> {{ (page - 4)+1 }} </a>
+                        <a href="/feed/{{ page - 3}}/{{which}}"> {{ (page - 3)+1}} </a>
+                        <a href="/feed/{{ page - 2 }}/{{which}}"> {{ (page - 2)+1 }} </a>
+                        <a href="/feed/{{ page - 1 }}/{{which}}"> {{ (page - 1)+1 }} </a>
+                        <a href="#" class="active">{{ (page)+1 }}</a>
+
+                    {% elif page == (max - 2) %}
+                        <!--2-->
+                        <a href="/feed/{{ page - 1}}/{{which}}">&laquo;</a>
+                        <a href="/feed/{{ page - 4}}/{{which}}"> {{ (page - 4)+1 }} </a>
+                        <a href="/feed/{{ page - 3 }}/{{which}}">{{ (page - 3)+1 }}</a>
+                        <a href="/feed/{{ page - 2 }}/{{which}}"> {{ (page - 2)+1 }} </a>
+                        <a href="/feed/{{ page - 1 }}/{{which}}"> {{ (page - 1)+1 }} </a>
+                        <a href="/feed/{{ page }}/{{which}}" class="active">{{ (page)+1 }}</a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}"> {{ (page + 1)+1 }} </a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+                    
+                    {% elif page == ( max - 3 ) %}
+                        <!--3-->
+                        <a href="/feed/{{ page - 1 }}/{{which}}">&laquo;</a>
+                        <a href="/feed/{{ page - 3 }}/{{which}}"> {{ (page - 3)+1 }} </a>
+                        <a href="/feed/{{ page - 2 }}/{{which}}"> {{ (page - 2)+1 }} </a>
+                        <a href="/feed/{{ page - 1}}/{{which}}">  {{ (page - 1)+1 }} </a>
+                        <a href="#" class="active">{{ (page)+1 }}</a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}"> {{ (page + 1)+1 }} </a>
+                        <a href="/feed/{{ page + 2 }}/{{which}}"> {{ (page + 2)+1 }} </a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+
+                    {% elif page == ( max - 4 ) %}
+                        <!--4-->
+                        <a href="/feed/{{ page - 1 }}/{{which}}">&laquo;</a>
+                        <a href="/feed/{{ page - 2 }}/{{which}}"> {{ (page - 2)+1 }} </a>
+                        <a href="/feed/{{ page - 1 }}/{{which}}"> {{ (page - 1)+1}} </a>
+                        <a href="#" class="active">{{ (page)+1 }}</a>
+                        <a href="/feed/{{ page + 1}}}/{{which}}"">  {{ (page + 1)+1 }} </a>
+                        <a href="/feed/{{ page + 2 }}/{{which}}"> {{ (page + 2)+1 }} </a>
+                        <a href="/feed/{{ page + 3 }}/{{which}}"> {{ (page + 3)+1 }} </a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+
+                    {% elif page == 1%}
+                        <!--5-->
+                        <a href="/feed/{{ page - 1}}/{{which}}">&laquo;</a>
+                        <a href="/feed/{{ page - 1 }}/{{which}}">{{ (page - 1)+1}}</a>
+                        <a href="#" class="active"> {{ (page)+1 }}</a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}"> {{ (page + 1)+1 }} </a>
+                        <a href="/feed/{{ page + 2}}/{{which}}"> {{ (page + 2)+1 }} </a>
+                        <a href="/feed/{{ page + 3 }}/{{which}}"> {{ (page + 3)+1 }} </a>
+                        <a href="/feed/{{ page + 4 }}/{{which}}"> {{ (page + 4)+1 }} </a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+
+                    {% elif page == 2%}
+                        <!--6-->
+                        <a href="/feed/{{ page - 1}}/{{which}}">&laquo;</a>
+                        <a href="/feed/{{ page - 2 }}/{{which}}">{{ (page - 2)+1 }}</a>
+                        <a href="/feed/{{ page - 1 }}/{{which}}"> {{ (page - 1)+1 }} </a>
+                        <a href="#" class="active"> {{ (page)+1 }}</a>
+                        <a href="/feed/{{ page + 1}}/{{which}}"> {{ (page + 1)+1 }} </a>
+                        <a href="/feed/{{ page + 2 }}/{{which}}"> {{ (page + 2)+1 }} </a>
+                        <a href="/feed/{{ page + 3 }}/{{which}}"> {{ (page + 3)+1 }} </a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+
+                    {% elif page == 3 %}
+                        <!--8-->
+                        <a href="/feed/{{ page - 1}}/{{which}}">&laquo;</a>
+                        <a href="/feed/{{ page - 3}}/{{which}}"> {{ (page - 3)+1}} </a>
+                        <a href="/feed/{{ page - 2 }}/{{which}}">{{ (page - 2)+1 }}</a>
+                        <a href="/feed/{{ page - 1 }}/{{which}}"> {{ (page - 1)+1 }} </a>
+                        <a href="/feed/{{ page }}/{{which}}" class="active">{{ (page)+1 }}</a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}"> {{ (page + 1)+1 }} </a>
+                        <a href="/feed/{{ page + 2 }}/{{which}}"> {{ (page + 2)+1 }} </a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+
+                    {% elif page == 0 %}
+                        <!--7-->
+                        <a href="#" class="active"> {{ (page)+1 }}</a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">{{ (page + 1)+1 }}</a>
+                        <a href="/feed/{{ page + 2 }}/{{which}}"> {{ (page + 2)+1 }} </a>
+                        <a href="/feed/{{ page + 3}}/{{which}}"> {{ (page + 3)+1 }} </a>
+                        <a href="/feed/{{ page + 4 }}/{{which}}"> {{ (page + 4)+1 }} </a>
+                        <a href="/feed/{{ page + 5 }}/{{which}}"> {{ (page + 5)+1 }} </a>
+                        <a href="/feed/{{ page + 1 }}/{{which}}">&raquo;</a>
+
+                    {% endif %}
+                {% endif %}
+            </div  >
+        </div>
+    {% endif %}
+    <script src="/static/js/popup.js"></script>
+</body>
+{% endblock %}

@@ -1,0 +1,48 @@
+.qrcode-text-btn {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    background-color: red;
+    cursor: pointer;
+  }
+  
+  .qrcode-text-btn > input[type=file] {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  
+.qrcode {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 80%; 
+  width: 80%;
+}
+
+.title {
+  font-size: 50px;
+  text-align: center;
+}
+
+.back {
+  margin-bottom: 80px;
+}
+
+.back a {
+  margin: 60px;
+  margin-left: 60px;
+  margin-left: 25px;
+  background-color: #ff6511;
+  color: white;
+  font-size: 40px;
+  padding: 40px 100px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 16px;
+}

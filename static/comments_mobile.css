@@ -1,0 +1,248 @@
+textarea {
+	resize: none;
+    width: 820px;
+    background-color: #1e2120;
+    color: white;
+    padding: 20px;
+    font-size: 60px;
+    margin-left:5%;
+}
+
+input[type=submit] {
+    width: 100%;
+    height: 150px;
+    background-color: #ff6511;
+    color: white;
+    -webkit-appearance: none;
+    padding: 14px 20px;
+    margin-top: 40px;
+    border: none;
+    border-radius: 16px;
+    font-size: 50px;
+    cursor: pointer;
+  }
+
+.delete img {
+    width: 55px;
+    height: 55px;
+}
+
+h2 {
+	font-size: 50px;
+}
+
+.box {
+	margin-top: 50px;
+	background-color:#353a38;
+    padding: 20px;
+    
+}
+
+.back {
+    margin-bottom: 80px;
+}
+
+.back a {
+    margin: 60px;
+    margin-left: 60px;
+    margin-left: 25px;
+    background-color: #ff6511;
+    color: white;
+    font-size: 40px;
+    padding: 40px 100px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 16px;
+}
+
+.comment{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+.comment_top {
+    background: #353a38;
+    font-size: 1.2rem;
+    display: block;
+    padding: 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.small_branch {
+    position: absolute;
+    width: 15px;
+    background-color: #555;
+    height: 49.25%;
+    left:5px;
+}
+
+.med_branch {
+    position: absolute;
+    width: 15px;
+    background-color: #555;
+    height: 100%;
+    left: 5px;
+}
+
+.large_branch {
+    position: absolute;
+    width: 15px;
+    background-color: #555;
+    height: 100%;
+    left: 10px;
+}
+
+.title {
+    margin: 0px;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 50px;
+}
+
+.primary_comment {
+    position: relative;
+}
+
+.secondary_comment {
+    position: relative;
+    margin-left: 35px;
+}
+
+.tertiary_comment {
+    margin-left: 35px;
+}
+
+.comment_name {
+    text-decoration: none;
+    color: white;
+    font-size: 60px;
+}
+
+.comments_ {
+    position: relative;
+}
+
+.comments{
+    position: relative;
+    padding-right: 10px;
+    padding-left: 40px;
+}
+
+.comment_like_count {
+    font-size: 60px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.comment_time_stamp {
+    margin:0px;
+    position:absolute;
+    float:right;
+    right:30px;
+    bottom:15px;
+    font-size: 40px;
+    background-color: #1e2120;
+    padding: 14px 14px;
+    border-radius: 8px;
+}
+
+.comment_content_inner {
+    background-color:#1e2120;
+}
+
+.new_post {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.comment_drop_box {
+
+}
+
+.comment_mid {
+    background-color:#1e2120;
+}
+
+.comment_bot {
+    background-color: #353a38;
+    position: relative;
+    height: 110px;
+}
+
+.comment_text {
+    font-size: 35px;
+    padding: 50px;
+    word-wrap: break-word;
+}
+
+.delete {
+    position: absolute;
+    color: #ff6511;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 25px solid #ff6511;
+    margin-left: -10px;
+    position: absolute;
+    right: 100px;
+    bottom: 40px;
+}
+
+.triangle-closed {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid #555;
+        margin-left: -10px;
+}
+
+.collapsable_comment {
+    margin-top: 10px;
+}
+
+.content {
+    position: relative;
+}
+
+.comment_like_button {
+    font-size: 40px;
+    position:absolute;
+    float:left;
+    left:15px;
+    bottom:15px;
+    background-color: #ff6511;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space:nowrap;
+    padding: 14px 14px;
+    box-shadow: 5px 5px 5px #232323;
+}
+
+.comment_comment_button {
+    font-size: 40px;
+    position:absolute;
+    float:left;
+    left:220px;
+    bottom:15px;
+    background-color: #ff6511;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space:nowrap;
+    padding: 14px 14px;
+    box-shadow: 5px 5px 5px #232323;
+}

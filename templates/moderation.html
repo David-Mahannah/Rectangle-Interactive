@@ -1,0 +1,17 @@
+{% block head %}
+<title> Reset Password </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='reset_password.css') }}">
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='moderation_mobile.css') }}" />
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="holder">
+        <a href="/edit_users/None/None"> Edit Users </a>
+        <a href="/edit_events/None"> Edit Events </a>
+        <a href="/edit_titles/None"> Manage Titles </a>
+        <a href="/read_feedback"> Feedback </a>
+        <a href="/read_reports"> Reports </a>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Search </title>
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="{{ url_for('static', filename='edit_titles_mobile.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title> Rectangle </title>
+<link rel="icon" href="/static/uploads/icon.jpg">
+
+{% endblock %}
+
+{% block body %}
+<div>
+    <a class="back" href="/moderator">Back</a>
+</div>
+<div class="prompt">
+    <form action='/edit_titles/None' method='POST'>
+    
+        <textarea type="text" rows = "1" name='text1' id='text'></textarea>
+        <textarea type="text" rows = "1" name='text2' id='cost'></textarea>
+        <input class="check" name="check" type="checkbox">
+        <input style="display: inline" type='submit' value='Save'>
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+<div class="events">
+    {% for title in titles %}
+    <div class="big">
+        <div class="cost_">
+            <a class="ccost"> {{ title.cost }} </a>
+        </div>
+        <div class="title_">
+            <a class="ttext"> {{ title.text }} {{ title.default  }}</a>
+        </div>
+        <div class="delete">
+            <a href="{{ title.id }}">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
