@@ -1,19 +1,19 @@
 .background-grid {
-        background-color: black;
+        background-color: green;
         height: 100%;
 }
-    
+
 .login {
     background-color: #000000;
 }
-    
+
 
 
 .newsletter {
         background: black;
         padding: 20px;
 }
-  
+
 
 .logo img{
     width:350px;
@@ -90,7 +90,7 @@ input[type=password], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
-  
+
   input[type=submit] {
     width: 100%;
     background-color: #ff6511;
@@ -101,7 +101,7 @@ input[type=password], select {
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   input[type=submit]:hover {
     background-color: #c14c0d;
 }
@@ -212,6 +212,3 @@ input[type=password], select {
     padding-top: 0px;
     height: 192px;
 }
-
-
-
