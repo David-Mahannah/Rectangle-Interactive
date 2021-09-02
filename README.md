@@ -1,3 +1,3 @@
 # Rectangle-Interactive
 
-  This is the Rectangle Interactive team github.
+  This is the Rectangle Interactive github.
