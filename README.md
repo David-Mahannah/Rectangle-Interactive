@@ -30,11 +30,9 @@ After running:
 `python app.py`
 The demo can be found at: http://127.0.0.1:5000/ in your browser and should look as follows:
 
-<img width="573" alt="Screen Shot 2022-01-25 at 9 27 50 AM" src="https://user-images.githubusercontent.com/44683761/151006616-eb857f2a-0bce-4f5e-a230-30e069ae6914.png">
-
 ## Analysis
 Although the user interface leaves something to be desired, the functionality of the site itself was my primary achievement. Integrating databases for users, posts, comments, and notifications really beefed up the complexity of this application from the back-end perspective. 
 Looking back at my work from my current standing, I realize how far I've come in project management and programming design patterns. A huge lesson in this project was the effectiveness of the Open-Closed Principle. https://en.wikipedia.org/wiki/Open–closed_principle. I struggled to implement new features to my code the longer I developed because I found myself rewriting code and modifying already existing code every update. 
 
 ## Conclusion
-This project is far from perfect and may not run on all systems unless tinkered with a bit. The github branch history is a mess to say the least but served as a good tool to familiarize myself with github as both a tool for collaboration and project deployment. I am currently working to bring back the functionality of this code so a easily downloaded demo can be used. (1/25/22)
+
