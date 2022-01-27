@@ -1,0 +1,5 @@
+data.sqlite
+__pycache__
+/static/uploads/event_posts/
+/statci/uploads/posts/
+/static/uploads/profile_pictures

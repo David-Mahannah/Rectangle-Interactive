@@ -10,16 +10,16 @@ from flask_mail import Message
 from sqlalchemy.sql import func
 import pytz
 import PhotoTools
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
+#from flask_script import Manager
+from flask_migrate import Migrate#, MigrateCommand
 from itsdangerous import URLSafeSerializer
 from flask_mail import Mail
-from flask_security import Security, SQLAlchemyUserDatastore, \
-    UserMixin, RoleMixin, login_required
+#from flask_security import Security, SQLAlchemyUserDatastore, \
+#    UserMixin, RoleMixin, login_required
 from werkzeug.utils import secure_filename
 import qrcode
 from sqlalchemy import select, desc
-from flask_qrcode import QRcode
+# from flask_qrcode import QRcode
 import random
 import uuid
 
@@ -48,8 +48,8 @@ db = SQLAlchemy(app)
 s = URLSafeSerializer('KH*tYhdfY9S0&3%0')
 
 migrate = Migrate(app, db)
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+#manager = Manager(app)
+#manager.add_command('db', MigrateCommand)
 
 week = {
     0: 'monday',
@@ -73,7 +73,7 @@ app.config.update(dict(
 ))
 
 mail = Mail(app)
-QRcode(app)
+# QRcode(app)
 
 class Event(db.Model):
     __tablename__ = 'event'
