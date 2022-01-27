@@ -8,7 +8,7 @@ A hobby social media site.
 * [Conclusion](#Conclusion)
 
 ## Introduction
-Rectangle Interactive is a website I built primary throughout senior year of highschool and early into my freshman fall semester.
+Rectangle Interactive is a website I built primary throughout senior year of highschool and early into my freshman fall semester. The project was dropped after a while because It turned into more of a chore than a learning experience. Upon discovering this project more recently, I was inspired to pick it up again and hopefully bring some new and more effective methods to developing this site as a more experience developer.
 
 ## Technologies
 - Python
