@@ -30,7 +30,7 @@ On Unix and Mac OS: `source myprojectenv/bin/activate`
 To install requirements `pip install -r requirements.txt`
 ### Running the demo
 After running:
-`python app.py`
+`python wsgi.py`
 The demo can be found at: http://127.0.0.1:5000/ in your browser and should look as follows:
 
 ## Analysis
