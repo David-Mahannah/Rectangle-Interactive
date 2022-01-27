@@ -1,8 +1,11 @@
+![logo](https://user-images.githubusercontent.com/44683761/151447607-ec8a2968-7a83-47c2-adb8-feec1cf6a2d1.PNG)
+
 # Rectangle Interactive
 A hobby social media site.
 
 ## Table of Contents
 * [Introduction](#Introduction)
+
 * [Technologies](#Technologies)
 * [Analysis](#Analysis)
 * [Conclusion](#Conclusion)
