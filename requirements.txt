@@ -14,6 +14,7 @@ Flask-Security==3.0.0
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==1.0.0
 greenlet==1.1.2
+gunicorn==20.1.0
 importlib-metadata==4.10.1
 importlib-resources==5.4.0
 itsdangerous==2.0.1
